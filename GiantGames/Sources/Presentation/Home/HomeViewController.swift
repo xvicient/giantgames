@@ -8,13 +8,17 @@
 
 import UIKit
 
-struct HomeViewData {
+struct HomeViewData: Equatable {
     let viewTitle: String
 }
 
 final class HomeViewController: UIViewController {
     var presenter: HomePresenterProtocol!
-    @IBOutlet private var tableView: UITableView!
+    @IBOutlet private var tableView: UITableView! {
+        didSet {
+            tableView.registerCells(GameCell.self)
+        }
+    }
     private var paginationThreshold: Int!
     private var games = [Game]() {
         didSet {
@@ -34,8 +38,10 @@ final class HomeViewController: UIViewController {
 extension HomeViewController: HomeViewProtocol {
     func render(state: HomeViewState) {
         switch state {
-        case let .show(games):
-            show(games)
+        case let .showView(data):
+            showView(data)
+        case let .showGames(games):
+            showGames(games)
         }
     }
 }
@@ -47,7 +53,11 @@ private extension HomeViewController {
         tableView.registerCells(GameCell.self)
     }
 
-    func show(_ games: [Game]) {
+    func showView(_ data: HomeViewData) {
+        title = data.viewTitle
+    }
+
+    func showGames(_ games: [Game]) {
         self.games.append(contentsOf: games)
     }
 }

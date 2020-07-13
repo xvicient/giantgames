@@ -7,11 +7,12 @@
 //
 
 extension Endpoint {
-    static func games(offset: String) -> Endpoint {
+    static func topGames(offset: String) -> Endpoint {
         Endpoint(path: "games/",
                  method: .get,
                  headers: nil,
                  queryParams: ["fields": "name,popularity",
+                               "order": "popularity:desc",
                                "limit": "20",
                                "offset": offset],
                  body: nil)

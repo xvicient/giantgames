@@ -6,7 +6,7 @@
 //  Copyright © 2020 GiantGames. All rights reserved.
 //
 
-struct Game {
+struct Game: Equatable {
     let id: Int
     let name: String
     let popularity: Double

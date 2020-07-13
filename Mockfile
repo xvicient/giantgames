@@ -1,0 +1,10 @@
+sourceryCommand: null
+mocky:
+  sources:
+    include:
+    - ./GiantGames/Sources
+  output: ./GiantGamesTests/Resources/Mock.generated.swift
+  testable:
+  - GiantGames
+  import:
+  - Swinject

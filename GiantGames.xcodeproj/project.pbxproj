@@ -39,6 +39,9 @@
 		C7B514F524BB92E2003760E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7B514EF24BB92E2003760E1 /* InfoPlist.strings */; };
 		C7B514F624BB92E2003760E1 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C7B514F124BB92E2003760E1 /* Localizable.stringsdict */; };
 		C7B514F724BB92E2003760E1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7B514F324BB92E2003760E1 /* Localizable.strings */; };
+		C7B5150524BBB46D003760E1 /* HomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B5150424BBB46D003760E1 /* HomeTests.swift */; };
+		C7B5150724BBB4B2003760E1 /* Mock.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B5150624BBB4B1003760E1 /* Mock.generated.swift */; };
+		C7B5150B24BC3DC4003760E1 /* GameMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B5150A24BC3DC4003760E1 /* GameMock.swift */; };
 		E97CEB636B62F2B46D9DF006 /* Pods_GiantGames.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3E5E80E6D14A5577E733EDC /* Pods_GiantGames.framework */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +100,9 @@
 		C7B514F824BB92F9003760E1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C7B514FA24BB92FE003760E1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		C7B514FC24BB9308003760E1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C7B5150424BBB46D003760E1 /* HomeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTests.swift; sourceTree = "<group>"; };
+		C7B5150624BBB4B1003760E1 /* Mock.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mock.generated.swift; sourceTree = "<group>"; };
+		C7B5150A24BC3DC4003760E1 /* GameMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,8 +157,9 @@
 		C7B5148024BB68B9003760E1 /* GiantGamesTests */ = {
 			isa = PBXGroup;
 			children = (
+				C7B514FE24BBB059003760E1 /* Sources */,
+				C7B5150324BBB3E9003760E1 /* Resources */,
 				C7B5148124BB68B9003760E1 /* GiantGamesTests.swift */,
-				C7B5148324BB68B9003760E1 /* Info.plist */,
 			);
 			path = GiantGamesTests;
 			sourceTree = "<group>";
@@ -336,6 +343,56 @@
 				C7B514F124BB92E2003760E1 /* Localizable.stringsdict */,
 			);
 			path = Locales;
+			sourceTree = "<group>";
+		};
+		C7B514FE24BBB059003760E1 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				C7B5150824BC3D9B003760E1 /* Data */,
+				C7B514FF24BBB060003760E1 /* Presentation */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		C7B514FF24BBB060003760E1 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				C7B5150024BBB068003760E1 /* Home */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		C7B5150024BBB068003760E1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C7B5150424BBB46D003760E1 /* HomeTests.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		C7B5150324BBB3E9003760E1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C7B5150624BBB4B1003760E1 /* Mock.generated.swift */,
+				C7B5148324BB68B9003760E1 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C7B5150824BC3D9B003760E1 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				C7B5150924BC3DB0003760E1 /* Mock */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		C7B5150924BC3DB0003760E1 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				C7B5150A24BC3DC4003760E1 /* GameMock.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		D228ACB3DB33ADDF26888791 /* Pods */ = {
@@ -578,6 +635,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7B5150724BBB4B2003760E1 /* Mock.generated.swift in Sources */,
+				C7B5150B24BC3DC4003760E1 /* GameMock.swift in Sources */,
+				C7B5150524BBB46D003760E1 /* HomeTests.swift in Sources */,
 				C7B5148224BB68B9003760E1 /* GiantGamesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -779,7 +839,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = GiantGamesTests/Info.plist;
+				INFOPLIST_FILE = GiantGamesTests/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -800,7 +860,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = GiantGamesTests/Info.plist;
+				INFOPLIST_FILE = GiantGamesTests/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

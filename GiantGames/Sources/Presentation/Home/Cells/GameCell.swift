@@ -9,8 +9,12 @@
 import UIKit
 
 class GameCell: UITableViewCell {
-
     @IBOutlet private var nameLabel: UILabel!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        selectionStyle = .none
+    }
 
     func setup(nameText: String) {
         nameLabel.text = nameText

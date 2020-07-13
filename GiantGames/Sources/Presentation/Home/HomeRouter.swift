@@ -24,4 +24,8 @@ extension HomeRouter: HomeRouterProtocol {
         alertController.addAction(UIAlertAction(title: okTitle, style: .default))
         viewController.present(alertController, animated: true)
     }
+
+    func showGameDetail(_ id: Int) {
+
+    }
 }

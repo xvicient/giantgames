@@ -20,6 +20,7 @@ protocol HomeBuilderProtocol {
 // sourcery: AutoMockable
 protocol HomeRouterProtocol {
     func show(_ message: String, okTitle: String)
+    func showGameDetail(_ id: Int)
 }
 
 // MARK: - Presenter
@@ -35,13 +36,14 @@ protocol HomePresenterProtocol {
 
 // sourcery: AutoMockable
 protocol HomeInteractorProtocol {
-    func games(offset: String, completion: @escaping (Result<[Game], APIError>) -> Void)
+    func topGames(offset: String, completion: @escaping (Result<[Game], APIError>) -> Void)
 }
 
 // MARK: - View
 
-enum HomeViewState {
-    case show(_ games: [Game])
+enum HomeViewState: Equatable {
+    case showView(_ data: HomeViewData)
+    case showGames(_ games: [Game])
 }
 
 // sourcery: AutoMockable

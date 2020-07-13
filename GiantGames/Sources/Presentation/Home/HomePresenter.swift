@@ -15,7 +15,7 @@ final class HomePresenter {
     private let locales: HomeLocales
     private var games = [Game]()
     private let pageSize = 20
-    private var currentPage = 1
+    private var currentPage = 0
     private let pagintaionThreshold = 6
     private var pageOffset: Int { currentPage * pageSize }
     private var isFetching = false
@@ -35,32 +35,37 @@ final class HomePresenter {
 
 extension HomePresenter: HomePresenterProtocol {
     func viewDidLoad() {
-        showGames()
+        showView()
+        showTopGames()
     }
 
     func didTapGame(_ index: Int) {
-        print(index)
+        router.showGameDetail(games[index].id)
     }
 
     func willDisplayCell(_ index: Int) {
         guard !isFetching && index >= games.count - pagintaionThreshold else { return }
-        showGames()
+        showTopGames()
     }
 }
 
 // MARK: - Private
 
 private extension HomePresenter {
-    func showGames() {
+    func showView() {
+        view.render(state: .showView(HomeViewData(viewTitle: locales.topGamesTitle)))
+    }
+
+    func showTopGames() {
         isFetching = true
-        interactor.games(offset: String(pageOffset)) { [weak self] result in
+        interactor.topGames(offset: String(pageOffset)) { [weak self] result in
             guard let self = self else { return }
             self.isFetching = false
             switch result {
             case let .success(games):
                 self.games += games
                 self.currentPage += 1
-                self.view.render(state: .show(games))
+                self.view.render(state: .showGames(games))
             case .failure:
                 self.router.show(self.locales.genericErrorMessage, okTitle: self.locales.alertOkTitle)
             }

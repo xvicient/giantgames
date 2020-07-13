@@ -8,8 +8,9 @@
 
 // MARK: - GameServiceApi
 
+// sourcery: AutoMockable
 protocol GameServiceApi {
-    func games(offset: String, completion: @escaping (Result<[Game], APIError>) -> Void)
+    func topGames(offset: String, completion: @escaping (Result<[Game], APIError>) -> Void)
 }
 
 // MARK: - GameService
@@ -23,8 +24,8 @@ struct GameService {
 }
 
 extension GameService: GameServiceApi {
-    func games(offset: String, completion: @escaping (Result<[Game], APIError>) -> Void) {
-        apiClient.request(.games(offset: offset)) { (result: Result<[GameCodable], APIError>) in
+    func topGames(offset: String, completion: @escaping (Result<[Game], APIError>) -> Void) {
+        apiClient.request(.topGames(offset: offset)) { (result: Result<[GameCodable], APIError>) in
             let games = result.map { $0.map { $0.toDomain() }}
             completion(games)
         }

@@ -7,6 +7,7 @@
 //
 
 struct HomeLocales {
+    let topGamesTitle = "top_games_title".localized
     let genericErrorMessage = "generic_error_message".localized
     let alertOkTitle = "alert_ok_title".localized
 }

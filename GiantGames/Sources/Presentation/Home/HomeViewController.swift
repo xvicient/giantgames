@@ -29,7 +29,6 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
-        onViewDidLoad()
     }
 }
 
@@ -49,10 +48,6 @@ extension HomeViewController: HomeViewProtocol {
 // MARK: - Private
 
 private extension HomeViewController {
-    func onViewDidLoad() {
-        tableView.registerCells(GameCell.self)
-    }
-
     func showView(_ data: HomeViewData) {
         title = data.viewTitle
     }

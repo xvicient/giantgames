@@ -26,6 +26,21 @@ class HomeViewTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
     }
+
+    func test_viewLoaded() {
+        view.viewDidLoad()
+        Verify(presenterMock, 1, .viewDidLoad())
+    }
+
+    func test_gameSelected() {
+        view.tableView(UITableView(), didSelectRowAt: IndexPath(row: 0, section: 0))
+        Verify(presenterMock, 1, .didTapGame(.value(0)))
+    }
+
+    func test_cellDisplayed() {
+        view.tableView(UITableView(), willDisplay: UITableViewCell(), forRowAt: IndexPath(row: 0, section: 0))
+        Verify(presenterMock, 1, .willDisplayCell(.value(0)))
+    }
 }
 
 private extension HomeViewTests {
@@ -125,6 +140,11 @@ class HomeInteractorTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
     }
+
+    func test_topGamesRequested() {
+        interactor.topGames(offset: "0", completion: { _ in })
+        Verify(gameServiceApiMock, 1, .topGames(offset: .value("0"), completion: .any))
+    }
 }
 
 private extension HomeInteractorTests {
@@ -147,6 +167,7 @@ class HomeRouterTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
     }
+    
 }
 
 private extension HomeRouterTests {

@@ -1,9 +1,9 @@
 
-# ![GiantGames](/GiantGames/Resources/Assets.xcassets/AppIcon.appiconset/app_icon_76.png) GiantGames iOS
+# ![GiantGames](/GiantGames/Resources/Assets.xcassets/AppIcon.appiconset/Icon-60x60@3x.png) GiantGames iOS
 
 ## Installation
 
-To run the project, clone the repo and run `pod update` from the root directory first.
+To run the project, clone the repo and run `pod install` from the root directory first.
 
 ## Requirements
 
@@ -21,4 +21,4 @@ Xavier Vicient Manteca
 
 ## License
 
-Copyright © 2018 Xavier Vicient Manteca.
+Copyright © 2020 Xavier Vicient Manteca.

@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="GiantGames" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="WIq-U3-Kut" id="43j-ok-87M"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,8 +16,24 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <point key="canvasLocation" x="140" y="154"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WIq-U3-Kut">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Mtk-BN-ARf"/>
+                        <outlet property="delegate" destination="-1" id="bAK-Eb-eHB"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="WIq-U3-Kut" secondAttribute="bottom" id="1Rv-RM-4rc"/>
+                <constraint firstItem="WIq-U3-Kut" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1Xg-2I-E0N"/>
+                <constraint firstAttribute="trailing" secondItem="WIq-U3-Kut" secondAttribute="trailing" id="m8U-6v-5FZ"/>
+                <constraint firstItem="WIq-U3-Kut" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="nnx-bI-DdC"/>
+            </constraints>
+            <point key="canvasLocation" x="140" y="152.47376311844079"/>
         </view>
     </objects>
 </document>

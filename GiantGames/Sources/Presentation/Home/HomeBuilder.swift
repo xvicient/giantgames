@@ -21,7 +21,8 @@ extension HomeBuilder: HomeBuilderProtocol {
         let view = HomeViewController(nibName: String(describing: HomeViewController.self), bundle: nil)
         let interactor = HomeInteractor(gameService: container.resolve(GameServiceApi.self))
         let router = HomeRouter(viewController: view, container: container)
-        let presenter = HomePresenter(view: view, interactor: interactor, router: router)
+        let locales = HomeLocales()
+        let presenter = HomePresenter(view: view, interactor: interactor, router: router, locales: locales)
 
         view.presenter = presenter
         

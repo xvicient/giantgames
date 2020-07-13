@@ -9,7 +9,7 @@
 // MARK: - GameServiceApi
 
 protocol GameServiceApi {
-    func games(completion: @escaping (Result<[Game], APIError>) -> Void)
+    func games(offset: String, completion: @escaping (Result<[Game], APIError>) -> Void)
 }
 
 // MARK: - GameService
@@ -23,8 +23,8 @@ struct GameService {
 }
 
 extension GameService: GameServiceApi {
-    func games(completion: @escaping (Result<[Game], APIError>) -> Void) {
-        apiClient.request(.games()) { (result: Result<[GameCodable], APIError>) in
+    func games(offset: String, completion: @escaping (Result<[Game], APIError>) -> Void) {
+        apiClient.request(.games(offset: offset)) { (result: Result<[GameCodable], APIError>) in
             let games = result.map { $0.map { $0.toDomain() }}
             completion(games)
         }

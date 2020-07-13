@@ -17,7 +17,7 @@ final class HomeInteractor {
 }
 
 extension HomeInteractor: HomeInteractorProtocol {
-    func games(completion: @escaping (Result<[Game], APIError>) -> Void) {
-        gameService.games(completion: completion)
+    func games(offset: String, completion: @escaping (Result<[Game], APIError>) -> Void) {
+        gameService.games(offset: offset, completion: completion)
     }
 }

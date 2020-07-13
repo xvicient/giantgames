@@ -76,20 +76,25 @@ class HomePresenterTests: XCTestCase {
     }
 
     func test_showGamesSucceed() {
-        mockGames(.success(self.gamesMock))
+        mockGames(.success(gamesMock))
         presenter.viewDidLoad()
+        Verify(viewMock, 1, .render(state: .value(.showLoading(HomeViewLoadingData(position: .middle, on: true)))))
         Verify(interactorMock, 1, .topGames(offset: .value("0"), completion: .any))
+        Verify(viewMock, 1, .render(state: .value(.showLoading(HomeViewLoadingData(position: .middle, on: false)))))
         Verify(viewMock, 1, .render(state: .value(.showGames(gamesMock))))
     }
 
     func test_showGamesFailure() {
         mockGames(.failure(APIError.httpCode(401, nil)))
         presenter.viewDidLoad()
+        Verify(viewMock, 1, .render(state: .value(.showLoading(HomeViewLoadingData(position: .middle, on: true)))))
+        Verify(interactorMock, 1, .topGames(offset: .value("0"), completion: .any))
+        Verify(viewMock, 1, .render(state: .value(.showLoading(HomeViewLoadingData(position: .middle, on: false)))))
         Verify(routerMock, 1, .show(.value(locales.genericErrorMessage), okTitle: .value(locales.alertOkTitle)))
     }
 
     func test_showGameDetail() {
-        mockGames(.success(self.gamesMock))
+        mockGames(.success(gamesMock))
         presenter.viewDidLoad()
         let tappedIndex = 0
         presenter.didTapGame(tappedIndex)
@@ -97,14 +102,16 @@ class HomePresenterTests: XCTestCase {
     }
 
     func test_paginationNotPerformed() {
-        mockGames(.success(self.gamesMock))
+        mockGames(.success(gamesMock))
         presenter.viewDidLoad()
         presenter.willDisplayCell(13)
+        Verify(viewMock, 1, .render(state: .value(.showLoading(HomeViewLoadingData(position: .middle, on: true)))))
         Verify(interactorMock, 0, .topGames(offset: .value("20"), completion: .any))
+        Verify(viewMock, 1, .render(state: .value(.showLoading(HomeViewLoadingData(position: .middle, on: false)))))
     }
 
     func test_paginationPerformed() {
-        mockGames(.success(self.gamesMock))
+        mockGames(.success(gamesMock))
         presenter.viewDidLoad()
         presenter.willDisplayCell(14)
         Verify(interactorMock, 1, .topGames(offset: .value("20"), completion: .any))

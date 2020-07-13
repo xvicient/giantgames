@@ -16,22 +16,35 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xzz-Jo-46F">
-                        <rect key="frame" x="12" y="11.5" width="390" height="21"/>
+                        <rect key="frame" x="12" y="11.5" width="362" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="cbR-Zk-16G">
+                        <rect key="frame" x="386" y="16" width="16" height="12.5"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="Fbt-ha-dz5"/>
+                            <constraint firstAttribute="height" constant="16" id="gZX-mt-pBI"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="cbR-Zk-16G" firstAttribute="leading" secondItem="Xzz-Jo-46F" secondAttribute="trailing" constant="12" id="9Fk-5l-OwS"/>
                     <constraint firstItem="Xzz-Jo-46F" firstAttribute="leading" secondItem="zQA-rz-Yyy" secondAttribute="leading" constant="12" id="KGW-D1-qPn"/>
-                    <constraint firstAttribute="trailing" secondItem="Xzz-Jo-46F" secondAttribute="trailing" constant="12" id="blO-id-ypW"/>
                     <constraint firstItem="Xzz-Jo-46F" firstAttribute="centerY" secondItem="zQA-rz-Yyy" secondAttribute="centerY" id="fRx-AP-Opx"/>
+                    <constraint firstAttribute="trailing" secondItem="cbR-Zk-16G" secondAttribute="trailing" constant="12" id="lRu-RB-tdt"/>
+                    <constraint firstItem="cbR-Zk-16G" firstAttribute="centerY" secondItem="zQA-rz-Yyy" secondAttribute="centerY" id="vur-Wt-Zj8"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="nameLabel" destination="Xzz-Jo-46F" id="JwH-Ib-9v0"/>
             </connections>
-            <point key="canvasLocation" x="209" y="-6"/>
+            <point key="canvasLocation" x="208.69565217391306" y="-6.0267857142857144"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
+    </resources>
 </document>

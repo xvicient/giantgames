@@ -30,6 +30,7 @@ protocol HomePresenterProtocol {
     func viewDidLoad()
     func didTapGame(_ index: Int)
     func willDisplayCell(_ index: Int)
+    func didRefresh()
 }
 
 // MARK: - Interactor
@@ -44,6 +45,7 @@ protocol HomeInteractorProtocol {
 enum HomeViewState: Equatable {
     case showView(_ data: HomeViewData)
     case showGames(_ games: [Game])
+    case showLoading(_ loading: HomeViewLoadingData)
 }
 
 // sourcery: AutoMockable

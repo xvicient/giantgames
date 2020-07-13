@@ -36,7 +36,7 @@ final class HomePresenter {
 extension HomePresenter: HomePresenterProtocol {
     func viewDidLoad() {
         showView()
-        showTopGames()
+        showTopGames(.middle)
     }
 
     func didTapGame(_ index: Int) {
@@ -45,7 +45,12 @@ extension HomePresenter: HomePresenterProtocol {
 
     func willDisplayCell(_ index: Int) {
         guard !isFetching && index >= games.count - pagintaionThreshold else { return }
-        showTopGames()
+        showTopGames(.bottom)
+    }
+
+    func didRefresh() {
+        games = []
+        showTopGames(.top)
     }
 }
 
@@ -56,10 +61,12 @@ private extension HomePresenter {
         view.render(state: .showView(HomeViewData(viewTitle: locales.topGamesTitle)))
     }
 
-    func showTopGames() {
+    func showTopGames(_ position: HomeViewLoadingPosition) {
+        view.render(state: .showLoading(HomeViewLoadingData(position: position, on: true)))
         isFetching = true
         interactor.topGames(offset: String(pageOffset)) { [weak self] result in
             guard let self = self else { return }
+            self.view.render(state: .showLoading(HomeViewLoadingData(position: position, on: false)))
             self.isFetching = false
             switch result {
             case let .success(games):

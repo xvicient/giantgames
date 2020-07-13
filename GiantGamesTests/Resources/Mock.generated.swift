@@ -535,11 +535,18 @@ open class HomePresenterProtocolMock: HomePresenterProtocol, Mock {
 		perform?(`index`)
     }
 
+    open func didRefresh() {
+        addInvocation(.m_didRefresh)
+		let perform = methodPerformValue(.m_didRefresh) as? () -> Void
+		perform?()
+    }
+
 
     fileprivate enum MethodType {
         case m_viewDidLoad
         case m_didTapGame__index(Parameter<Int>)
         case m_willDisplayCell__index(Parameter<Int>)
+        case m_didRefresh
 
         static func compareParameters(lhs: MethodType, rhs: MethodType, matcher: Matcher) -> Bool {
             switch (lhs, rhs) {
@@ -551,6 +558,8 @@ open class HomePresenterProtocolMock: HomePresenterProtocol, Mock {
             case (.m_willDisplayCell__index(let lhsIndex), .m_willDisplayCell__index(let rhsIndex)):
                 guard Parameter.compare(lhs: lhsIndex, rhs: rhsIndex, with: matcher) else { return false } 
                 return true 
+            case (.m_didRefresh, .m_didRefresh):
+                return true 
             default: return false
             }
         }
@@ -560,6 +569,7 @@ open class HomePresenterProtocolMock: HomePresenterProtocol, Mock {
             case .m_viewDidLoad: return 0
             case let .m_didTapGame__index(p0): return p0.intValue
             case let .m_willDisplayCell__index(p0): return p0.intValue
+            case .m_didRefresh: return 0
             }
         }
     }
@@ -581,6 +591,7 @@ open class HomePresenterProtocolMock: HomePresenterProtocol, Mock {
         public static func viewDidLoad() -> Verify { return Verify(method: .m_viewDidLoad)}
         public static func didTapGame(_ index: Parameter<Int>) -> Verify { return Verify(method: .m_didTapGame__index(`index`))}
         public static func willDisplayCell(_ index: Parameter<Int>) -> Verify { return Verify(method: .m_willDisplayCell__index(`index`))}
+        public static func didRefresh() -> Verify { return Verify(method: .m_didRefresh)}
     }
 
     public struct Perform {
@@ -595,6 +606,9 @@ open class HomePresenterProtocolMock: HomePresenterProtocol, Mock {
         }
         public static func willDisplayCell(_ index: Parameter<Int>, perform: @escaping (Int) -> Void) -> Perform {
             return Perform(method: .m_willDisplayCell__index(`index`), performs: perform)
+        }
+        public static func didRefresh(perform: @escaping () -> Void) -> Perform {
+            return Perform(method: .m_didRefresh, performs: perform)
         }
     }
 

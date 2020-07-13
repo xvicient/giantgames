@@ -1,5 +1,5 @@
 
-# ![GiantGames](/GiantGames/Resources/Assets.xcassets/AppIcon.appiconset/Icon-20x20@3x) GiantGames iOS
+# ![GiantGames](/GiantGames/Resources/Assets.xcassets/AppIcon.appiconset/Icon-20x20@3x.png) GiantGames iOS
 
 ## Installation
 

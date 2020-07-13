@@ -26,6 +26,7 @@ extension HomeRouter: HomeRouterProtocol {
     }
 
     func showGameDetail(_ id: Int) {
-
+        let gameDetailViewController = GameDetailBuilder(container: container).buildModule()
+        viewController.show(gameDetailViewController, sender: nil)
     }
 }

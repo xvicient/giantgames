@@ -105,16 +105,25 @@ class HomePresenterTests: XCTestCase {
         mockGames(.success(gamesMock))
         presenter.viewDidLoad()
         presenter.willDisplayCell(13)
-        Verify(viewMock, 1, .render(state: .value(.showLoading(HomeViewLoadingData(position: .middle, on: true)))))
-        Verify(interactorMock, 0, .topGames(offset: .value("20"), completion: .any))
-        Verify(viewMock, 1, .render(state: .value(.showLoading(HomeViewLoadingData(position: .middle, on: false)))))
+        Verify(interactorMock, 0, .topGames(offset: .any, completion: .any))
     }
 
     func test_paginationPerformed() {
         mockGames(.success(gamesMock))
         presenter.viewDidLoad()
         presenter.willDisplayCell(14)
+        Verify(viewMock, 1, .render(state: .value(.showLoading(HomeViewLoadingData(position: .bottom, on: true)))))
         Verify(interactorMock, 1, .topGames(offset: .value("20"), completion: .any))
+        Verify(viewMock, 1, .render(state: .value(.showLoading(HomeViewLoadingData(position: .bottom, on: false)))))
+    }
+
+    func test_refreshGames() {
+        mockGames(.success([]))
+        presenter.didRefresh()
+        Verify(viewMock, 1, .render(state: .value(.showLoading(HomeViewLoadingData(position: .top, on: true)))))
+        Verify(interactorMock, 1, .topGames(offset: .value("0"), completion: .any))
+        Verify(viewMock, 1, .render(state: .value(.showLoading(HomeViewLoadingData(position: .top, on: false)))))
+        Verify(viewMock, 1, .render(state: .value(.showGames([]))))
     }
 }
 

@@ -103,7 +103,7 @@ class HomePresenterTests: XCTestCase {
         let tappedIndex = 0
         presenter.didTapGame(tappedIndex)
 
-        Verify(routerMock, 1, .showGameDetail(.value(gamesMock[tappedIndex].id)))
+        Verify(routerMock, 1, .showGameDetail(.value(gamesMock[tappedIndex])))
     }
 
     func test_paginationNotPerformed() {

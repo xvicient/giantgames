@@ -20,15 +20,34 @@ final class GameDetailInteractor {
 }
 
 extension GameDetailInteractor: GameDetailInteractorProtocol {
-    func cover(_ coverId: Int, completion: @escaping (Result<[Cover], APIError>) -> Void) {
+    func coverURL(_ coverId: Int, completion: @escaping (Result<URL?, APIError>) -> Void) {
         coverService.cover(coverId) {
-            completion($0.map { $0.filter { $0.url != nil } })
+            completion($0.map { $0.compactMap { $0.url }.first })
         }
     }
 
-    func screenshot(_ screenshotId: Int, completion: @escaping (Result<[Screenshot], APIError>) -> Void) {
+    func screenshotURLs(_ screenshotIds: [Int], completion: @escaping ([URL]) -> Void) {
+        var screenshotURLs = [URL]()
+        let group = DispatchGroup()
+
+        screenshotIds.forEach { [weak self] screenshotId in
+            group.enter()
+            self?.screenshotURL(screenshotId) {
+                if case let .success(url) = $0, let screenshotURL = url {
+                    screenshotURLs += [screenshotURL]
+                }
+                group.leave()
+            }
+        }
+
+        group.notify(queue: .main) { completion(screenshotURLs) }
+    }
+}
+
+private extension GameDetailInteractor {
+    func screenshotURL(_ screenshotId: Int, completion: @escaping (Result<URL?, APIError>) -> Void) {
         screenshotService.screenshot(screenshotId) {
-            completion($0.map { $0.filter { $0.url != nil } })
+            completion($0.map { $0.compactMap { $0.url }.first })
         }
     }
 }

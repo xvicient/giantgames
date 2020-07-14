@@ -10,13 +10,13 @@
 
 struct GameMock {
     static var game: Game {
-        Game(id: 0, name: "Test", popularity: 0)
+        Game(id: 0, name: "Test", cover: 0, storyline: "Test", screenshots: [])
     }
 
     static func games(_ count: Int) -> [Game] {
         var games = [Game]()
         for index in 1...count {
-            games.append(Game(id: index, name: "Test\(index)", popularity: 0))
+            games.append(Game(id: index, name: "Name\(index)", cover: 0, storyline: "Storyline\(index)", screenshots: []))
         }
         return games
     }

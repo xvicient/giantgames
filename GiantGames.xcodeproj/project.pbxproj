@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		58AE9457DA5D58EDCC086594 /* Pods_GiantGamesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E94386C80C06011F2350431 /* Pods_GiantGamesTests.framework */; };
+		C7901CFB24BE4DB800692F2F /* GameDetailMediaCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7901CFA24BE4DB800692F2F /* GameDetailMediaCollectionView.swift */; };
+		C7901CFE24BE4EF600692F2F /* GameDetailMediaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7901CFD24BE4EF600692F2F /* GameDetailMediaCollectionViewCell.swift */; };
+		C7901D0024BE4EFE00692F2F /* GameDetailMediaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7901CFF24BE4EFE00692F2F /* GameDetailMediaCollectionViewCell.xib */; };
+		C7901D0224BE4FB000692F2F /* UICollectionView+GG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7901D0124BE4FB000692F2F /* UICollectionView+GG.swift */; };
+		C7901D0424BE53CB00692F2F /* UIImageView+Fullscreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7901D0324BE53CB00692F2F /* UIImageView+Fullscreen.swift */; };
+		C7901D0624BE53F000692F2F /* UIWindow+TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7901D0524BE53F000692F2F /* UIWindow+TopViewController.swift */; };
 		C79A54A924BD060200AC0C46 /* GameDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79A54A224BD060200AC0C46 /* GameDetailPresenter.swift */; };
 		C79A54AA24BD060200AC0C46 /* GameDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79A54A324BD060200AC0C46 /* GameDetailRouter.swift */; };
 		C79A54AB24BD060200AC0C46 /* GameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79A54A424BD060200AC0C46 /* GameDetailViewController.swift */; };
@@ -79,6 +85,12 @@
 		A173B29BA73E030CE2F756E2 /* Pods-GiantGames.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiantGames.release.xcconfig"; path = "Target Support Files/Pods-GiantGames/Pods-GiantGames.release.xcconfig"; sourceTree = "<group>"; };
 		B3AF01CFB2F62076D175F474 /* Pods-GiantGames.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiantGames.debug.xcconfig"; path = "Target Support Files/Pods-GiantGames/Pods-GiantGames.debug.xcconfig"; sourceTree = "<group>"; };
 		B3E5E80E6D14A5577E733EDC /* Pods_GiantGames.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiantGames.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7901CFA24BE4DB800692F2F /* GameDetailMediaCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailMediaCollectionView.swift; sourceTree = "<group>"; };
+		C7901CFD24BE4EF600692F2F /* GameDetailMediaCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailMediaCollectionViewCell.swift; sourceTree = "<group>"; };
+		C7901CFF24BE4EFE00692F2F /* GameDetailMediaCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameDetailMediaCollectionViewCell.xib; sourceTree = "<group>"; };
+		C7901D0124BE4FB000692F2F /* UICollectionView+GG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+GG.swift"; sourceTree = "<group>"; };
+		C7901D0324BE53CB00692F2F /* UIImageView+Fullscreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Fullscreen.swift"; sourceTree = "<group>"; };
+		C7901D0524BE53F000692F2F /* UIWindow+TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+TopViewController.swift"; sourceTree = "<group>"; };
 		C79A54A224BD060200AC0C46 /* GameDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailPresenter.swift; sourceTree = "<group>"; };
 		C79A54A324BD060200AC0C46 /* GameDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailRouter.swift; sourceTree = "<group>"; };
 		C79A54A424BD060200AC0C46 /* GameDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailViewController.swift; sourceTree = "<group>"; };
@@ -159,9 +171,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C7901CF924BE4D8700692F2F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C7901CFA24BE4DB800692F2F /* GameDetailMediaCollectionView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C7901CFC24BE4EDA00692F2F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C7901CFD24BE4EF600692F2F /* GameDetailMediaCollectionViewCell.swift */,
+				C7901CFF24BE4EFE00692F2F /* GameDetailMediaCollectionViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		C79A54A124BD05EA00AC0C46 /* GameDetail */ = {
 			isa = PBXGroup;
 			children = (
+				C7901CFC24BE4EDA00692F2F /* Cells */,
+				C7901CF924BE4D8700692F2F /* Views */,
 				C79A54A624BD060200AC0C46 /* GameDetailBuilder.swift */,
 				C79A54A724BD060200AC0C46 /* GameDetailInteractor.swift */,
 				C79A54A224BD060200AC0C46 /* GameDetailPresenter.swift */,
@@ -378,9 +409,12 @@
 		C7B514C024BB8616003760E1 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				C7B514C124BB8629003760E1 /* UITableView+GG.swift */,
+				C7901D0124BE4FB000692F2F /* UICollectionView+GG.swift */,
+				C7901D0324BE53CB00692F2F /* UIImageView+Fullscreen.swift */,
 				C79A54BD24BE009200AC0C46 /* UIImageView+URL.swift */,
+				C7B514C124BB8629003760E1 /* UITableView+GG.swift */,
 				C79A54C124BE2F2500AC0C46 /* UIView+RoundCorners.swift */,
+				C7901D0524BE53F000692F2F /* UIWindow+TopViewController.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -568,6 +602,7 @@
 				C7B514C724BB8697003760E1 /* GameCell.xib in Resources */,
 				C7B514F524BB92E2003760E1 /* InfoPlist.strings in Resources */,
 				C7B514F624BB92E2003760E1 /* Localizable.stringsdict in Resources */,
+				C7901D0024BE4EFE00692F2F /* GameDetailMediaCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -697,6 +732,7 @@
 				C79A54BA24BDF97B00AC0C46 /* Endpoint+Cover.swift in Sources */,
 				C79A54AE24BD060200AC0C46 /* GameDetailInteractor.swift in Sources */,
 				C7B5149B24BB6D6F003760E1 /* HomeRouter.swift in Sources */,
+				C7901D0224BE4FB000692F2F /* UICollectionView+GG.swift in Sources */,
 				C79A54B824BDF92E00AC0C46 /* CoverCodable.swift in Sources */,
 				C7B514A624BB723D003760E1 /* Endpoint.swift in Sources */,
 				C7B5149F24BB6D6F003760E1 /* HomeInteractor.swift in Sources */,
@@ -708,20 +744,24 @@
 				C7B5149E24BB6D6F003760E1 /* HomeBuilder.swift in Sources */,
 				C79A54C624BE382E00AC0C46 /* Endpoint+Screenshot.swift in Sources */,
 				C7B5149024BB6BF2003760E1 /* DependencyInjection.swift in Sources */,
+				C7901CFE24BE4EF600692F2F /* GameDetailMediaCollectionViewCell.swift in Sources */,
 				C7B514CD24BB90A5003760E1 /* String+Localization.swift in Sources */,
 				C7B5149D24BB6D6F003760E1 /* HomeProtocols.swift in Sources */,
 				C7B514AC24BB7324003760E1 /* URLRequest+cURLString.swift in Sources */,
 				C7B514C924BB8898003760E1 /* String+Class.swift in Sources */,
 				C7B514AE24BB735A003760E1 /* NoResult.swift in Sources */,
 				C7B514B524BB7B45003760E1 /* GameCodable.swift in Sources */,
+				C7901D0624BE53F000692F2F /* UIWindow+TopViewController.swift in Sources */,
 				C79A54CA24BE389200AC0C46 /* ScreenshotCodable.swift in Sources */,
 				C79A54C024BE296A00AC0C46 /* URL+Scheme.swift in Sources */,
 				C7B514C524BB868E003760E1 /* GameCell.swift in Sources */,
 				C79A54CC24BE38BC00AC0C46 /* ScreenshotService.swift in Sources */,
 				C7B514BB24BB7D37003760E1 /* Game.swift in Sources */,
+				C7901D0424BE53CB00692F2F /* UIImageView+Fullscreen.swift in Sources */,
 				C7B514B824BB7CEE003760E1 /* DomainProtocols.swift in Sources */,
 				C7B514B324BB7AA6003760E1 /* Endpoint+Game.swift in Sources */,
 				C7B5146B24BB68B7003760E1 /* AppDelegate.swift in Sources */,
+				C7901CFB24BE4DB800692F2F /* GameDetailMediaCollectionView.swift in Sources */,
 				C79A54AB24BD060200AC0C46 /* GameDetailViewController.swift in Sources */,
 				C79A54C824BE386E00AC0C46 /* Screenshot.swift in Sources */,
 			);

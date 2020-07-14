@@ -31,6 +31,7 @@ extension GameDetailPresenter: GameDetailPresenterProtocol {
     func viewDidLoad() {
         showView()
         showCover()
+        showScreenshots()
     }
 }
 
@@ -43,13 +44,22 @@ private extension GameDetailPresenter {
     }
 
     func showCover() {
-        interactor.cover(game.cover) { [weak self] result in
+        interactor.coverURL(game.cover) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case let .success(cover):
-                self.view.render(state: .showCover(cover.first!.url!))
+            case let .success(coverURL):
+                guard let url = coverURL else { return }
+                self.view.render(state: .showCover(url))
             case .failure: break
             }
+        }
+    }
+
+    func showScreenshots() {
+        guard let screenshotIds = game.screenshots else { return }
+        interactor.screenshotURLs(screenshotIds) { [weak self] urls in
+            guard let self = self else { return }
+            self.view.render(state: .showScreenshots(urls))
         }
     }
 }

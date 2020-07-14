@@ -13,9 +13,9 @@ To run the project, clone the repo and run `pod install` from the root directory
 
 ## About frameworks
 
-**SwiftLint** used to enforce Swift style and conventions.
-**Swinject** used to define the app dependencies.
-**Nuke** used to download and display images on the app.
+**SwiftLint** used to enforce Swift style and conventions.<br/>
+**Swinject** used to define the app dependencies.<br/>
+**Nuke** used to download and display images on the app.<br/>
 **SwiftyMocky** used to build mocks in runtime. Depends on Sourcery, which scans the source code and generates mocks.
 
 ## Changes

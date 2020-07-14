@@ -11,6 +11,13 @@ To run the project, clone the repo and run `pod install` from the root directory
 
 **CocoaPods** 1.9.3
 
+## About frameworks
+
+**SwiftLint** used to enforce Swift style and conventions.
+**Swinject** used to define the app dependencies.
+**Nuke** used to download and display images on the app.
+**SwiftyMocky** used to build mocks in runtime. Depends on Sourcery, which scans the source code and generates mocks.
+
 ## Changes
 
 See the [CHANGELOG](CHANGELOG.md) for more info.

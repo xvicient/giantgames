@@ -11,4 +11,3 @@ struct HomeLocales {
     let genericErrorMessage = "generic_error_message".localized
     let alertOkTitle = "alert_ok_title".localized
 }
-

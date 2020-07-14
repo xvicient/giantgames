@@ -468,6 +468,7 @@
 			buildConfigurationList = C7B5148924BB68B9003760E1 /* Build configuration list for PBXNativeTarget "GiantGamesTests" */;
 			buildPhases = (
 				5247C6D9B4F66D2C066A2281 /* [CP] Check Pods Manifest.lock */,
+				C79A54B024BD93DE00AC0C46 /* SwiftLint */,
 				C7B5147924BB68B9003760E1 /* Sources */,
 				C7B5147A24BB68B9003760E1 /* Frameworks */,
 				C7B5147B24BB68B9003760E1 /* Resources */,
@@ -624,6 +625,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GiantGames/Pods-GiantGames-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		C79A54B024BD93DE00AC0C46 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\" autocorrect --config \".swiftlint.yml\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

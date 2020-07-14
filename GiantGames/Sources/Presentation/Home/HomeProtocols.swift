@@ -20,7 +20,7 @@ protocol HomeBuilderProtocol {
 // sourcery: AutoMockable
 protocol HomeRouterProtocol {
     func show(_ message: String, okTitle: String)
-    func showGameDetail(_ id: Int)
+    func showGameDetail(_ game: Game)
 }
 
 // MARK: - Presenter

@@ -12,7 +12,7 @@ import UIKit
 
 // sourcery: AutoMockable
 protocol GameDetailBuilderProtocol {
-    func buildModule() -> UIViewController
+    func buildModule(_ game: Game) -> UIViewController
 }
 
 // MARK: - Router
@@ -30,11 +30,15 @@ protocol GameDetailPresenterProtocol {
 // MARK: - Interactor
 
 // sourcery: AutoMockable
-protocol GameDetailInteractorProtocol {}
+protocol GameDetailInteractorProtocol {
+    func cover(_ coverId: Int, completion: @escaping (Result<[Cover], APIError>) -> Void)
+}
 
 // MARK: - View
 
-enum GameDetailViewState {}
+enum GameDetailViewState {
+    case showCover(_ url: URL)
+}
 
 // sourcery: AutoMockable
 protocol GameDetailViewProtocol: AnyObject {

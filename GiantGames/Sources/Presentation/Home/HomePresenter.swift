@@ -40,7 +40,7 @@ extension HomePresenter: HomePresenterProtocol {
     }
 
     func didTapGame(_ index: Int) {
-        router.showGameDetail(games[index].id)
+        router.showGameDetail(games[index])
     }
 
     func willDisplayCell(_ index: Int) {

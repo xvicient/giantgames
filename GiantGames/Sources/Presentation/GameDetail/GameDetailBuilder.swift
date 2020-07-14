@@ -17,11 +17,11 @@ final class GameDetailBuilder {
 }
 
 extension GameDetailBuilder: GameDetailBuilderProtocol {
-    func buildModule() -> UIViewController {
+    func buildModule(_ game: Game) -> UIViewController {
         let view = GameDetailViewController(nibName: String(describing: GameDetailViewController.self), bundle: nil)
-        let interactor = GameDetailInteractor()
+        let interactor = GameDetailInteractor(coverService: container.resolve(CoverServiceApi.self))
         let router = GameDetailRouter(viewController: view, container: container)
-        let presenter = GameDetailPresenter(view: view, interactor: interactor, router: router)
+        let presenter = GameDetailPresenter(view: view, interactor: interactor, router: router, game: game)
 
         view.presenter = presenter
         

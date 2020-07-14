@@ -1,5 +1,5 @@
 //
-//  Endpoint+Games.swift
+//  Endpoint+Game.swift
 //  GiantGames
 //
 //  Created by Xavier on 12/07/2020.
@@ -11,7 +11,7 @@ extension Endpoint {
         Endpoint(path: "games/",
                  method: .get,
                  headers: nil,
-                 queryParams: ["fields": "name,popularity",
+                 queryParams: ["fields": "name,cover",
                                "order": "popularity:desc",
                                "limit": "20",
                                "offset": offset],

@@ -26,8 +26,7 @@ struct GameService {
 extension GameService: GameServiceApi {
     func topGames(offset: String, completion: @escaping (Result<[Game], APIError>) -> Void) {
         apiClient.request(.topGames(offset: offset)) { (result: Result<[GameCodable], APIError>) in
-            let games = result.map { $0.map { $0.toDomain() }}
-            completion(games)
+            completion(result.map { $0.map { $0.toDomain() }})
         }
     }
 }

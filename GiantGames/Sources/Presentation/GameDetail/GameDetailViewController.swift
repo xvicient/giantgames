@@ -10,6 +10,7 @@ import UIKit
 
 final class GameDetailViewController: UIViewController {
     var presenter: GameDetailPresenterProtocol!
+    @IBOutlet private var coverImageView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +18,21 @@ final class GameDetailViewController: UIViewController {
     }
 }
 
+// MARK: - GameDetailViewProtocol
+
 extension GameDetailViewController: GameDetailViewProtocol {
-    func render(state: GameDetailViewState) {}
+    func render(state: GameDetailViewState) {
+        switch state {
+        case let .showCover(url):
+            showCover(url)
+        }
+    }
+}
+
+// MARK: - Private
+
+private extension GameDetailViewController {
+    func showCover(_ url: URL) {
+        coverImageView.load(url: url)
+    }
 }

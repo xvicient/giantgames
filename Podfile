@@ -6,6 +6,7 @@ def common
   use_frameworks!
   pod 'SwiftLint', '~> 0.39'
   pod 'Swinject', '~> 2.7'
+  pod 'Nuke', '~> 9.1.1'
 end
 
 target 'GiantGames' do

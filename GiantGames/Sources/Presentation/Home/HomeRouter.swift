@@ -25,8 +25,8 @@ extension HomeRouter: HomeRouterProtocol {
         viewController.present(alertController, animated: true)
     }
 
-    func showGameDetail(_ id: Int) {
-        let gameDetailViewController = GameDetailBuilder(container: container).buildModule()
+    func showGameDetail(_ game: Game) {
+        let gameDetailViewController = GameDetailBuilder(container: container).buildModule(game)
         viewController.show(gameDetailViewController, sender: nil)
     }
 }

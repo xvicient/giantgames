@@ -100,5 +100,9 @@ struct DependenciesRegistration: Dependencies {
         container.register(GameServiceApi.self) {
             GameService(apiClient: $0.resolve(APIClientApi.self)!)
         }
+
+        container.register(CoverServiceApi.self) {
+            CoverService(apiClient: $0.resolve(APIClientApi.self)!)
+        }
     }
 }

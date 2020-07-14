@@ -9,5 +9,5 @@
 struct Game: Equatable {
     let id: Int
     let name: String
-    let popularity: Double
+    let cover: Int
 }

@@ -32,11 +32,13 @@ protocol GameDetailPresenterProtocol {
 // sourcery: AutoMockable
 protocol GameDetailInteractorProtocol {
     func cover(_ coverId: Int, completion: @escaping (Result<[Cover], APIError>) -> Void)
+    func screenshot(_ screenshotId: Int, completion: @escaping (Result<[Screenshot], APIError>) -> Void)
 }
 
 // MARK: - View
 
 enum GameDetailViewState {
+    case showView(_ data: GameDetailViewData)
     case showCover(_ url: URL)
 }
 

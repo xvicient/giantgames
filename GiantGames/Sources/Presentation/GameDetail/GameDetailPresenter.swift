@@ -29,6 +29,7 @@ final class GameDetailPresenter {
 
 extension GameDetailPresenter: GameDetailPresenterProtocol {
     func viewDidLoad() {
+        showView()
         showCover()
     }
 }
@@ -36,6 +37,11 @@ extension GameDetailPresenter: GameDetailPresenterProtocol {
 // MARK: - Private
 
 private extension GameDetailPresenter {
+    func showView() {
+        let data = GameDetailViewData(gameName: game.name, gameStoryline: game.storyline)
+        view.render(state: .showView(data))
+    }
+
     func showCover() {
         interactor.cover(game.cover) { [weak self] result in
             guard let self = self else { return }

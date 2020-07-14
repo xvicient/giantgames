@@ -10,8 +10,10 @@ struct GameCodable: Codable, Domain {
     let id: Int
     let name: String
     let cover: Int
+    let storyline: String?
+    let screenshots: [Int]?
 
     func toDomain() -> Game {
-        Game(id: id, name: name, cover: cover)
+        Game(id: id, name: name, cover: cover, storyline: storyline, screenshots: screenshots)
     }
 }

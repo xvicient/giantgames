@@ -8,9 +8,20 @@
 
 import UIKit
 
+struct GameDetailViewData {
+    let gameName: String
+    let gameStoryline: String?
+}
+
 final class GameDetailViewController: UIViewController {
     var presenter: GameDetailPresenterProtocol!
-    @IBOutlet private var coverImageView: UIImageView!
+    @IBOutlet private var coverImageView: UIImageView! {
+        didSet {
+            coverImageView.roundCorners(radius: 75.0)
+        }
+    }
+    @IBOutlet private var ganeNameLabel: UILabel!
+    @IBOutlet private var gameStorylineLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +36,8 @@ extension GameDetailViewController: GameDetailViewProtocol {
         switch state {
         case let .showCover(url):
             showCover(url)
+        case let .showView(data):
+            showView(data)
         }
     }
 }
@@ -34,5 +47,10 @@ extension GameDetailViewController: GameDetailViewProtocol {
 private extension GameDetailViewController {
     func showCover(_ url: URL) {
         coverImageView.load(url: url)
+    }
+
+    func showView(_ data: GameDetailViewData) {
+        ganeNameLabel.text = data.gameName
+        gameStorylineLabel.text = data.gameStoryline
     }
 }

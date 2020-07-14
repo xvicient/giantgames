@@ -104,5 +104,9 @@ struct DependenciesRegistration: Dependencies {
         container.register(CoverServiceApi.self) {
             CoverService(apiClient: $0.resolve(APIClientApi.self)!)
         }
+
+        container.register(ScreenshotServiceApi.self) {
+            ScreenshotService(apiClient: $0.resolve(APIClientApi.self)!)
+        }
     }
 }

@@ -10,4 +10,6 @@ struct Game: Equatable {
     let id: Int
     let name: String
     let cover: Int
+    let storyline: String?
+    let screenshots: [Int]?
 }

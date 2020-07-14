@@ -101,12 +101,8 @@ struct DependenciesRegistration: Dependencies {
             GameService(apiClient: $0.resolve(APIClientApi.self)!)
         }
 
-        container.register(CoverServiceApi.self) {
-            CoverService(apiClient: $0.resolve(APIClientApi.self)!)
-        }
-
-        container.register(ScreenshotServiceApi.self) {
-            ScreenshotService(apiClient: $0.resolve(APIClientApi.self)!)
+        container.register(GameImageServiceApi.self) {
+            GameImageService(apiClient: $0.resolve(APIClientApi.self)!)
         }
     }
 }

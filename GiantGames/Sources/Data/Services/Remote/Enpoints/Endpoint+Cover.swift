@@ -7,11 +7,11 @@
 //
 
 extension Endpoint {
-    static func cover(_ coverId: Int) -> Endpoint {
-        Endpoint(path: "covers/\(coverId)/",
+    static func cover(_ id: Int) -> Endpoint {
+        Endpoint(path: "covers/\(id)/",
                  method: .get,
                  headers: nil,
-                 queryParams: ["fields": "url,width,height"],
+                 queryParams: ["fields": "image_id,width,height"],
                  body: nil)
     }
 }

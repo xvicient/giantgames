@@ -7,11 +7,11 @@
 //
 
 extension Endpoint {
-    static func screenshot(_ screenshotId: Int) -> Endpoint {
-        Endpoint(path: "screenshots/\(screenshotId)/",
+    static func screenshot(_ id: Int) -> Endpoint {
+        Endpoint(path: "screenshots/\(id)/",
                  method: .get,
                  headers: nil,
-                 queryParams: ["fields": "url,width,height"],
+                 queryParams: ["fields": "image_id,width,height"],
                  body: nil)
     }
 }

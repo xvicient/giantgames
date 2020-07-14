@@ -13,155 +13,6 @@ import Swinject
 @testable import GiantGames
 
 
-// MARK: - CoverServiceApi
-open class CoverServiceApiMock: CoverServiceApi, Mock {
-    init(sequencing sequencingPolicy: SequencingPolicy = .lastWrittenResolvedFirst, stubbing stubbingPolicy: StubbingPolicy = .wrap, file: StaticString = #file, line: UInt = #line) {
-        SwiftyMockyTestObserver.setup()
-        self.sequencingPolicy = sequencingPolicy
-        self.stubbingPolicy = stubbingPolicy
-        self.file = file
-        self.line = line
-    }
-
-    var matcher: Matcher = Matcher.default
-    var stubbingPolicy: StubbingPolicy = .wrap
-    var sequencingPolicy: SequencingPolicy = .lastWrittenResolvedFirst
-    private var invocations: [MethodType] = []
-    private var methodReturnValues: [Given] = []
-    private var methodPerformValues: [Perform] = []
-    private var file: StaticString?
-    private var line: UInt?
-
-    public typealias PropertyStub = Given
-    public typealias MethodStub = Given
-    public typealias SubscriptStub = Given
-
-    /// Convenience method - call setupMock() to extend debug information when failure occurs
-    public func setupMock(file: StaticString = #file, line: UInt = #line) {
-        self.file = file
-        self.line = line
-    }
-
-    /// Clear mock internals. You can specify what to reset (invocations aka verify, givens or performs) or leave it empty to clear all mock internals
-    public func resetMock(_ scopes: MockScope...) {
-        let scopes: [MockScope] = scopes.isEmpty ? [.invocation, .given, .perform] : scopes
-        if scopes.contains(.invocation) { invocations = [] }
-        if scopes.contains(.given) { methodReturnValues = [] }
-        if scopes.contains(.perform) { methodPerformValues = [] }
-    }
-
-
-
-
-
-    open func cover(_ coverId: Int, completion: @escaping (Result<[Cover], APIError>) -> Void) {
-        addInvocation(.m_cover__coverIdcompletion_completion(Parameter<Int>.value(`coverId`), Parameter<(Result<[Cover], APIError>) -> Void>.value(`completion`)))
-		let perform = methodPerformValue(.m_cover__coverIdcompletion_completion(Parameter<Int>.value(`coverId`), Parameter<(Result<[Cover], APIError>) -> Void>.value(`completion`))) as? (Int, @escaping (Result<[Cover], APIError>) -> Void) -> Void
-		perform?(`coverId`, `completion`)
-    }
-
-
-    fileprivate enum MethodType {
-        case m_cover__coverIdcompletion_completion(Parameter<Int>, Parameter<(Result<[Cover], APIError>) -> Void>)
-
-        static func compareParameters(lhs: MethodType, rhs: MethodType, matcher: Matcher) -> Bool {
-            switch (lhs, rhs) {
-            case (.m_cover__coverIdcompletion_completion(let lhsCoverid, let lhsCompletion), .m_cover__coverIdcompletion_completion(let rhsCoverid, let rhsCompletion)):
-                guard Parameter.compare(lhs: lhsCoverid, rhs: rhsCoverid, with: matcher) else { return false } 
-                guard Parameter.compare(lhs: lhsCompletion, rhs: rhsCompletion, with: matcher) else { return false } 
-                return true 
-            }
-        }
-
-        func intValue() -> Int {
-            switch self {
-            case let .m_cover__coverIdcompletion_completion(p0, p1): return p0.intValue + p1.intValue
-            }
-        }
-    }
-
-    open class Given: StubbedMethod {
-        fileprivate var method: MethodType
-
-        private init(method: MethodType, products: [StubProduct]) {
-            self.method = method
-            super.init(products)
-        }
-
-
-    }
-
-    public struct Verify {
-        fileprivate var method: MethodType
-
-        public static func cover(_ coverId: Parameter<Int>, completion: Parameter<(Result<[Cover], APIError>) -> Void>) -> Verify { return Verify(method: .m_cover__coverIdcompletion_completion(`coverId`, `completion`))}
-    }
-
-    public struct Perform {
-        fileprivate var method: MethodType
-        var performs: Any
-
-        public static func cover(_ coverId: Parameter<Int>, completion: Parameter<(Result<[Cover], APIError>) -> Void>, perform: @escaping (Int, @escaping (Result<[Cover], APIError>) -> Void) -> Void) -> Perform {
-            return Perform(method: .m_cover__coverIdcompletion_completion(`coverId`, `completion`), performs: perform)
-        }
-    }
-
-    public func given(_ method: Given) {
-        methodReturnValues.append(method)
-    }
-
-    public func perform(_ method: Perform) {
-        methodPerformValues.append(method)
-        methodPerformValues.sort { $0.method.intValue() < $1.method.intValue() }
-    }
-
-    public func verify(_ method: Verify, count: Count = Count.moreOrEqual(to: 1), file: StaticString = #file, line: UInt = #line) {
-        let invocations = matchingCalls(method.method)
-        MockyAssert(count.matches(invocations.count), "Expected: \(count) invocations of `\(method.method)`, but was: \(invocations.count)", file: file, line: line)
-    }
-
-    private func addInvocation(_ call: MethodType) {
-        invocations.append(call)
-    }
-    private func methodReturnValue(_ method: MethodType) throws -> StubProduct {
-        let candidates = sequencingPolicy.sorted(methodReturnValues, by: { $0.method.intValue() > $1.method.intValue() })
-        let matched = candidates.first(where: { $0.isValid && MethodType.compareParameters(lhs: $0.method, rhs: method, matcher: matcher) })
-        guard let product = matched?.getProduct(policy: self.stubbingPolicy) else { throw MockError.notStubed }
-        return product
-    }
-    private func methodPerformValue(_ method: MethodType) -> Any? {
-        let matched = methodPerformValues.reversed().first { MethodType.compareParameters(lhs: $0.method, rhs: method, matcher: matcher) }
-        return matched?.performs
-    }
-    private func matchingCalls(_ method: MethodType) -> [MethodType] {
-        return invocations.filter { MethodType.compareParameters(lhs: $0, rhs: method, matcher: matcher) }
-    }
-    private func matchingCalls(_ method: Verify) -> Int {
-        return matchingCalls(method.method).count
-    }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
-        do {
-            return try methodReturnValue(method).casted()
-        } catch {
-            onFatalFailure(message)
-            Failure(message)
-        }
-    }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
-        do {
-            return try methodReturnValue(method).casted()
-        } catch {
-            return nil
-        }
-    }
-    private func onFatalFailure(_ message: String) {
-        #if Mocky
-        guard let file = self.file, let line = self.line else { return } // Let if fail if cannot handle gratefully
-        SwiftyMockyTestObserver.handleMissingStubError(message: message, file: file, line: line)
-        #endif
-    }
-}
-
 // MARK: - GameDetailBuilderProtocol
 open class GameDetailBuilderProtocolMock: GameDetailBuilderProtocol, Mock {
     init(sequencing sequencingPolicy: SequencingPolicy = .lastWrittenResolvedFirst, stubbing stubbingPolicy: StubbingPolicy = .wrap, file: StaticString = #file, line: UInt = #line) {
@@ -369,31 +220,31 @@ open class GameDetailInteractorProtocolMock: GameDetailInteractorProtocol, Mock 
 
 
 
-    open func coverURL(_ coverId: Int, completion: @escaping (Result<URL?, APIError>) -> Void) {
-        addInvocation(.m_coverURL__coverIdcompletion_completion(Parameter<Int>.value(`coverId`), Parameter<(Result<URL?, APIError>) -> Void>.value(`completion`)))
-		let perform = methodPerformValue(.m_coverURL__coverIdcompletion_completion(Parameter<Int>.value(`coverId`), Parameter<(Result<URL?, APIError>) -> Void>.value(`completion`))) as? (Int, @escaping (Result<URL?, APIError>) -> Void) -> Void
-		perform?(`coverId`, `completion`)
+    open func coverURL(_ id: Int, completion: @escaping (Result<URL?, APIError>) -> Void) {
+        addInvocation(.m_coverURL__idcompletion_completion(Parameter<Int>.value(`id`), Parameter<(Result<URL?, APIError>) -> Void>.value(`completion`)))
+		let perform = methodPerformValue(.m_coverURL__idcompletion_completion(Parameter<Int>.value(`id`), Parameter<(Result<URL?, APIError>) -> Void>.value(`completion`))) as? (Int, @escaping (Result<URL?, APIError>) -> Void) -> Void
+		perform?(`id`, `completion`)
     }
 
-    open func screenshotURLs(_ screenshotIds: [Int], completion: @escaping ([URL]) -> Void) {
-        addInvocation(.m_screenshotURLs__screenshotIdscompletion_completion(Parameter<[Int]>.value(`screenshotIds`), Parameter<([URL]) -> Void>.value(`completion`)))
-		let perform = methodPerformValue(.m_screenshotURLs__screenshotIdscompletion_completion(Parameter<[Int]>.value(`screenshotIds`), Parameter<([URL]) -> Void>.value(`completion`))) as? ([Int], @escaping ([URL]) -> Void) -> Void
-		perform?(`screenshotIds`, `completion`)
+    open func screenshotURLs(_ id: [Int], completion: @escaping ([URL]) -> Void) {
+        addInvocation(.m_screenshotURLs__idcompletion_completion(Parameter<[Int]>.value(`id`), Parameter<([URL]) -> Void>.value(`completion`)))
+		let perform = methodPerformValue(.m_screenshotURLs__idcompletion_completion(Parameter<[Int]>.value(`id`), Parameter<([URL]) -> Void>.value(`completion`))) as? ([Int], @escaping ([URL]) -> Void) -> Void
+		perform?(`id`, `completion`)
     }
 
 
     fileprivate enum MethodType {
-        case m_coverURL__coverIdcompletion_completion(Parameter<Int>, Parameter<(Result<URL?, APIError>) -> Void>)
-        case m_screenshotURLs__screenshotIdscompletion_completion(Parameter<[Int]>, Parameter<([URL]) -> Void>)
+        case m_coverURL__idcompletion_completion(Parameter<Int>, Parameter<(Result<URL?, APIError>) -> Void>)
+        case m_screenshotURLs__idcompletion_completion(Parameter<[Int]>, Parameter<([URL]) -> Void>)
 
         static func compareParameters(lhs: MethodType, rhs: MethodType, matcher: Matcher) -> Bool {
             switch (lhs, rhs) {
-            case (.m_coverURL__coverIdcompletion_completion(let lhsCoverid, let lhsCompletion), .m_coverURL__coverIdcompletion_completion(let rhsCoverid, let rhsCompletion)):
-                guard Parameter.compare(lhs: lhsCoverid, rhs: rhsCoverid, with: matcher) else { return false } 
+            case (.m_coverURL__idcompletion_completion(let lhsId, let lhsCompletion), .m_coverURL__idcompletion_completion(let rhsId, let rhsCompletion)):
+                guard Parameter.compare(lhs: lhsId, rhs: rhsId, with: matcher) else { return false } 
                 guard Parameter.compare(lhs: lhsCompletion, rhs: rhsCompletion, with: matcher) else { return false } 
                 return true 
-            case (.m_screenshotURLs__screenshotIdscompletion_completion(let lhsScreenshotids, let lhsCompletion), .m_screenshotURLs__screenshotIdscompletion_completion(let rhsScreenshotids, let rhsCompletion)):
-                guard Parameter.compare(lhs: lhsScreenshotids, rhs: rhsScreenshotids, with: matcher) else { return false } 
+            case (.m_screenshotURLs__idcompletion_completion(let lhsId, let lhsCompletion), .m_screenshotURLs__idcompletion_completion(let rhsId, let rhsCompletion)):
+                guard Parameter.compare(lhs: lhsId, rhs: rhsId, with: matcher) else { return false } 
                 guard Parameter.compare(lhs: lhsCompletion, rhs: rhsCompletion, with: matcher) else { return false } 
                 return true 
             default: return false
@@ -402,8 +253,8 @@ open class GameDetailInteractorProtocolMock: GameDetailInteractorProtocol, Mock 
 
         func intValue() -> Int {
             switch self {
-            case let .m_coverURL__coverIdcompletion_completion(p0, p1): return p0.intValue + p1.intValue
-            case let .m_screenshotURLs__screenshotIdscompletion_completion(p0, p1): return p0.intValue + p1.intValue
+            case let .m_coverURL__idcompletion_completion(p0, p1): return p0.intValue + p1.intValue
+            case let .m_screenshotURLs__idcompletion_completion(p0, p1): return p0.intValue + p1.intValue
             }
         }
     }
@@ -422,19 +273,19 @@ open class GameDetailInteractorProtocolMock: GameDetailInteractorProtocol, Mock 
     public struct Verify {
         fileprivate var method: MethodType
 
-        public static func coverURL(_ coverId: Parameter<Int>, completion: Parameter<(Result<URL?, APIError>) -> Void>) -> Verify { return Verify(method: .m_coverURL__coverIdcompletion_completion(`coverId`, `completion`))}
-        public static func screenshotURLs(_ screenshotIds: Parameter<[Int]>, completion: Parameter<([URL]) -> Void>) -> Verify { return Verify(method: .m_screenshotURLs__screenshotIdscompletion_completion(`screenshotIds`, `completion`))}
+        public static func coverURL(_ id: Parameter<Int>, completion: Parameter<(Result<URL?, APIError>) -> Void>) -> Verify { return Verify(method: .m_coverURL__idcompletion_completion(`id`, `completion`))}
+        public static func screenshotURLs(_ id: Parameter<[Int]>, completion: Parameter<([URL]) -> Void>) -> Verify { return Verify(method: .m_screenshotURLs__idcompletion_completion(`id`, `completion`))}
     }
 
     public struct Perform {
         fileprivate var method: MethodType
         var performs: Any
 
-        public static func coverURL(_ coverId: Parameter<Int>, completion: Parameter<(Result<URL?, APIError>) -> Void>, perform: @escaping (Int, @escaping (Result<URL?, APIError>) -> Void) -> Void) -> Perform {
-            return Perform(method: .m_coverURL__coverIdcompletion_completion(`coverId`, `completion`), performs: perform)
+        public static func coverURL(_ id: Parameter<Int>, completion: Parameter<(Result<URL?, APIError>) -> Void>, perform: @escaping (Int, @escaping (Result<URL?, APIError>) -> Void) -> Void) -> Perform {
+            return Perform(method: .m_coverURL__idcompletion_completion(`id`, `completion`), performs: perform)
         }
-        public static func screenshotURLs(_ screenshotIds: Parameter<[Int]>, completion: Parameter<([URL]) -> Void>, perform: @escaping ([Int], @escaping ([URL]) -> Void) -> Void) -> Perform {
-            return Perform(method: .m_screenshotURLs__screenshotIdscompletion_completion(`screenshotIds`, `completion`), performs: perform)
+        public static func screenshotURLs(_ id: Parameter<[Int]>, completion: Parameter<([URL]) -> Void>, perform: @escaping ([Int], @escaping ([URL]) -> Void) -> Void) -> Perform {
+            return Perform(method: .m_screenshotURLs__idcompletion_completion(`id`, `completion`), performs: perform)
         }
     }
 
@@ -873,6 +724,172 @@ open class GameDetailViewProtocolMock: GameDetailViewProtocol, Mock {
 
         public static func render(state: Parameter<GameDetailViewState>, perform: @escaping (GameDetailViewState) -> Void) -> Perform {
             return Perform(method: .m_render__state_state(`state`), performs: perform)
+        }
+    }
+
+    public func given(_ method: Given) {
+        methodReturnValues.append(method)
+    }
+
+    public func perform(_ method: Perform) {
+        methodPerformValues.append(method)
+        methodPerformValues.sort { $0.method.intValue() < $1.method.intValue() }
+    }
+
+    public func verify(_ method: Verify, count: Count = Count.moreOrEqual(to: 1), file: StaticString = #file, line: UInt = #line) {
+        let invocations = matchingCalls(method.method)
+        MockyAssert(count.matches(invocations.count), "Expected: \(count) invocations of `\(method.method)`, but was: \(invocations.count)", file: file, line: line)
+    }
+
+    private func addInvocation(_ call: MethodType) {
+        invocations.append(call)
+    }
+    private func methodReturnValue(_ method: MethodType) throws -> StubProduct {
+        let candidates = sequencingPolicy.sorted(methodReturnValues, by: { $0.method.intValue() > $1.method.intValue() })
+        let matched = candidates.first(where: { $0.isValid && MethodType.compareParameters(lhs: $0.method, rhs: method, matcher: matcher) })
+        guard let product = matched?.getProduct(policy: self.stubbingPolicy) else { throw MockError.notStubed }
+        return product
+    }
+    private func methodPerformValue(_ method: MethodType) -> Any? {
+        let matched = methodPerformValues.reversed().first { MethodType.compareParameters(lhs: $0.method, rhs: method, matcher: matcher) }
+        return matched?.performs
+    }
+    private func matchingCalls(_ method: MethodType) -> [MethodType] {
+        return invocations.filter { MethodType.compareParameters(lhs: $0, rhs: method, matcher: matcher) }
+    }
+    private func matchingCalls(_ method: Verify) -> Int {
+        return matchingCalls(method.method).count
+    }
+    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+        do {
+            return try methodReturnValue(method).casted()
+        } catch {
+            onFatalFailure(message)
+            Failure(message)
+        }
+    }
+    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+        do {
+            return try methodReturnValue(method).casted()
+        } catch {
+            return nil
+        }
+    }
+    private func onFatalFailure(_ message: String) {
+        #if Mocky
+        guard let file = self.file, let line = self.line else { return } // Let if fail if cannot handle gratefully
+        SwiftyMockyTestObserver.handleMissingStubError(message: message, file: file, line: line)
+        #endif
+    }
+}
+
+// MARK: - GameImageServiceApi
+open class GameImageServiceApiMock: GameImageServiceApi, Mock {
+    init(sequencing sequencingPolicy: SequencingPolicy = .lastWrittenResolvedFirst, stubbing stubbingPolicy: StubbingPolicy = .wrap, file: StaticString = #file, line: UInt = #line) {
+        SwiftyMockyTestObserver.setup()
+        self.sequencingPolicy = sequencingPolicy
+        self.stubbingPolicy = stubbingPolicy
+        self.file = file
+        self.line = line
+    }
+
+    var matcher: Matcher = Matcher.default
+    var stubbingPolicy: StubbingPolicy = .wrap
+    var sequencingPolicy: SequencingPolicy = .lastWrittenResolvedFirst
+    private var invocations: [MethodType] = []
+    private var methodReturnValues: [Given] = []
+    private var methodPerformValues: [Perform] = []
+    private var file: StaticString?
+    private var line: UInt?
+
+    public typealias PropertyStub = Given
+    public typealias MethodStub = Given
+    public typealias SubscriptStub = Given
+
+    /// Convenience method - call setupMock() to extend debug information when failure occurs
+    public func setupMock(file: StaticString = #file, line: UInt = #line) {
+        self.file = file
+        self.line = line
+    }
+
+    /// Clear mock internals. You can specify what to reset (invocations aka verify, givens or performs) or leave it empty to clear all mock internals
+    public func resetMock(_ scopes: MockScope...) {
+        let scopes: [MockScope] = scopes.isEmpty ? [.invocation, .given, .perform] : scopes
+        if scopes.contains(.invocation) { invocations = [] }
+        if scopes.contains(.given) { methodReturnValues = [] }
+        if scopes.contains(.perform) { methodPerformValues = [] }
+    }
+
+
+
+
+
+    open func cover(_ id: Int, completion: @escaping (Result<[GameImage], APIError>) -> Void) {
+        addInvocation(.m_cover__idcompletion_completion(Parameter<Int>.value(`id`), Parameter<(Result<[GameImage], APIError>) -> Void>.value(`completion`)))
+		let perform = methodPerformValue(.m_cover__idcompletion_completion(Parameter<Int>.value(`id`), Parameter<(Result<[GameImage], APIError>) -> Void>.value(`completion`))) as? (Int, @escaping (Result<[GameImage], APIError>) -> Void) -> Void
+		perform?(`id`, `completion`)
+    }
+
+    open func screenshot(_ id: Int, completion: @escaping (Result<[GameImage], APIError>) -> Void) {
+        addInvocation(.m_screenshot__idcompletion_completion(Parameter<Int>.value(`id`), Parameter<(Result<[GameImage], APIError>) -> Void>.value(`completion`)))
+		let perform = methodPerformValue(.m_screenshot__idcompletion_completion(Parameter<Int>.value(`id`), Parameter<(Result<[GameImage], APIError>) -> Void>.value(`completion`))) as? (Int, @escaping (Result<[GameImage], APIError>) -> Void) -> Void
+		perform?(`id`, `completion`)
+    }
+
+
+    fileprivate enum MethodType {
+        case m_cover__idcompletion_completion(Parameter<Int>, Parameter<(Result<[GameImage], APIError>) -> Void>)
+        case m_screenshot__idcompletion_completion(Parameter<Int>, Parameter<(Result<[GameImage], APIError>) -> Void>)
+
+        static func compareParameters(lhs: MethodType, rhs: MethodType, matcher: Matcher) -> Bool {
+            switch (lhs, rhs) {
+            case (.m_cover__idcompletion_completion(let lhsId, let lhsCompletion), .m_cover__idcompletion_completion(let rhsId, let rhsCompletion)):
+                guard Parameter.compare(lhs: lhsId, rhs: rhsId, with: matcher) else { return false } 
+                guard Parameter.compare(lhs: lhsCompletion, rhs: rhsCompletion, with: matcher) else { return false } 
+                return true 
+            case (.m_screenshot__idcompletion_completion(let lhsId, let lhsCompletion), .m_screenshot__idcompletion_completion(let rhsId, let rhsCompletion)):
+                guard Parameter.compare(lhs: lhsId, rhs: rhsId, with: matcher) else { return false } 
+                guard Parameter.compare(lhs: lhsCompletion, rhs: rhsCompletion, with: matcher) else { return false } 
+                return true 
+            default: return false
+            }
+        }
+
+        func intValue() -> Int {
+            switch self {
+            case let .m_cover__idcompletion_completion(p0, p1): return p0.intValue + p1.intValue
+            case let .m_screenshot__idcompletion_completion(p0, p1): return p0.intValue + p1.intValue
+            }
+        }
+    }
+
+    open class Given: StubbedMethod {
+        fileprivate var method: MethodType
+
+        private init(method: MethodType, products: [StubProduct]) {
+            self.method = method
+            super.init(products)
+        }
+
+
+    }
+
+    public struct Verify {
+        fileprivate var method: MethodType
+
+        public static func cover(_ id: Parameter<Int>, completion: Parameter<(Result<[GameImage], APIError>) -> Void>) -> Verify { return Verify(method: .m_cover__idcompletion_completion(`id`, `completion`))}
+        public static func screenshot(_ id: Parameter<Int>, completion: Parameter<(Result<[GameImage], APIError>) -> Void>) -> Verify { return Verify(method: .m_screenshot__idcompletion_completion(`id`, `completion`))}
+    }
+
+    public struct Perform {
+        fileprivate var method: MethodType
+        var performs: Any
+
+        public static func cover(_ id: Parameter<Int>, completion: Parameter<(Result<[GameImage], APIError>) -> Void>, perform: @escaping (Int, @escaping (Result<[GameImage], APIError>) -> Void) -> Void) -> Perform {
+            return Perform(method: .m_cover__idcompletion_completion(`id`, `completion`), performs: perform)
+        }
+        public static func screenshot(_ id: Parameter<Int>, completion: Parameter<(Result<[GameImage], APIError>) -> Void>, perform: @escaping (Int, @escaping (Result<[GameImage], APIError>) -> Void) -> Void) -> Perform {
+            return Perform(method: .m_screenshot__idcompletion_completion(`id`, `completion`), performs: perform)
         }
     }
 
@@ -1859,155 +1876,6 @@ open class HomeViewProtocolMock: HomeViewProtocol, Mock {
 
         public static func render(state: Parameter<HomeViewState>, perform: @escaping (HomeViewState) -> Void) -> Perform {
             return Perform(method: .m_render__state_state(`state`), performs: perform)
-        }
-    }
-
-    public func given(_ method: Given) {
-        methodReturnValues.append(method)
-    }
-
-    public func perform(_ method: Perform) {
-        methodPerformValues.append(method)
-        methodPerformValues.sort { $0.method.intValue() < $1.method.intValue() }
-    }
-
-    public func verify(_ method: Verify, count: Count = Count.moreOrEqual(to: 1), file: StaticString = #file, line: UInt = #line) {
-        let invocations = matchingCalls(method.method)
-        MockyAssert(count.matches(invocations.count), "Expected: \(count) invocations of `\(method.method)`, but was: \(invocations.count)", file: file, line: line)
-    }
-
-    private func addInvocation(_ call: MethodType) {
-        invocations.append(call)
-    }
-    private func methodReturnValue(_ method: MethodType) throws -> StubProduct {
-        let candidates = sequencingPolicy.sorted(methodReturnValues, by: { $0.method.intValue() > $1.method.intValue() })
-        let matched = candidates.first(where: { $0.isValid && MethodType.compareParameters(lhs: $0.method, rhs: method, matcher: matcher) })
-        guard let product = matched?.getProduct(policy: self.stubbingPolicy) else { throw MockError.notStubed }
-        return product
-    }
-    private func methodPerformValue(_ method: MethodType) -> Any? {
-        let matched = methodPerformValues.reversed().first { MethodType.compareParameters(lhs: $0.method, rhs: method, matcher: matcher) }
-        return matched?.performs
-    }
-    private func matchingCalls(_ method: MethodType) -> [MethodType] {
-        return invocations.filter { MethodType.compareParameters(lhs: $0, rhs: method, matcher: matcher) }
-    }
-    private func matchingCalls(_ method: Verify) -> Int {
-        return matchingCalls(method.method).count
-    }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
-        do {
-            return try methodReturnValue(method).casted()
-        } catch {
-            onFatalFailure(message)
-            Failure(message)
-        }
-    }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
-        do {
-            return try methodReturnValue(method).casted()
-        } catch {
-            return nil
-        }
-    }
-    private func onFatalFailure(_ message: String) {
-        #if Mocky
-        guard let file = self.file, let line = self.line else { return } // Let if fail if cannot handle gratefully
-        SwiftyMockyTestObserver.handleMissingStubError(message: message, file: file, line: line)
-        #endif
-    }
-}
-
-// MARK: - ScreenshotServiceApi
-open class ScreenshotServiceApiMock: ScreenshotServiceApi, Mock {
-    init(sequencing sequencingPolicy: SequencingPolicy = .lastWrittenResolvedFirst, stubbing stubbingPolicy: StubbingPolicy = .wrap, file: StaticString = #file, line: UInt = #line) {
-        SwiftyMockyTestObserver.setup()
-        self.sequencingPolicy = sequencingPolicy
-        self.stubbingPolicy = stubbingPolicy
-        self.file = file
-        self.line = line
-    }
-
-    var matcher: Matcher = Matcher.default
-    var stubbingPolicy: StubbingPolicy = .wrap
-    var sequencingPolicy: SequencingPolicy = .lastWrittenResolvedFirst
-    private var invocations: [MethodType] = []
-    private var methodReturnValues: [Given] = []
-    private var methodPerformValues: [Perform] = []
-    private var file: StaticString?
-    private var line: UInt?
-
-    public typealias PropertyStub = Given
-    public typealias MethodStub = Given
-    public typealias SubscriptStub = Given
-
-    /// Convenience method - call setupMock() to extend debug information when failure occurs
-    public func setupMock(file: StaticString = #file, line: UInt = #line) {
-        self.file = file
-        self.line = line
-    }
-
-    /// Clear mock internals. You can specify what to reset (invocations aka verify, givens or performs) or leave it empty to clear all mock internals
-    public func resetMock(_ scopes: MockScope...) {
-        let scopes: [MockScope] = scopes.isEmpty ? [.invocation, .given, .perform] : scopes
-        if scopes.contains(.invocation) { invocations = [] }
-        if scopes.contains(.given) { methodReturnValues = [] }
-        if scopes.contains(.perform) { methodPerformValues = [] }
-    }
-
-
-
-
-
-    open func screenshot(_ screenshotId: Int, completion: @escaping (Result<[Screenshot], APIError>) -> Void) {
-        addInvocation(.m_screenshot__screenshotIdcompletion_completion(Parameter<Int>.value(`screenshotId`), Parameter<(Result<[Screenshot], APIError>) -> Void>.value(`completion`)))
-		let perform = methodPerformValue(.m_screenshot__screenshotIdcompletion_completion(Parameter<Int>.value(`screenshotId`), Parameter<(Result<[Screenshot], APIError>) -> Void>.value(`completion`))) as? (Int, @escaping (Result<[Screenshot], APIError>) -> Void) -> Void
-		perform?(`screenshotId`, `completion`)
-    }
-
-
-    fileprivate enum MethodType {
-        case m_screenshot__screenshotIdcompletion_completion(Parameter<Int>, Parameter<(Result<[Screenshot], APIError>) -> Void>)
-
-        static func compareParameters(lhs: MethodType, rhs: MethodType, matcher: Matcher) -> Bool {
-            switch (lhs, rhs) {
-            case (.m_screenshot__screenshotIdcompletion_completion(let lhsScreenshotid, let lhsCompletion), .m_screenshot__screenshotIdcompletion_completion(let rhsScreenshotid, let rhsCompletion)):
-                guard Parameter.compare(lhs: lhsScreenshotid, rhs: rhsScreenshotid, with: matcher) else { return false } 
-                guard Parameter.compare(lhs: lhsCompletion, rhs: rhsCompletion, with: matcher) else { return false } 
-                return true 
-            }
-        }
-
-        func intValue() -> Int {
-            switch self {
-            case let .m_screenshot__screenshotIdcompletion_completion(p0, p1): return p0.intValue + p1.intValue
-            }
-        }
-    }
-
-    open class Given: StubbedMethod {
-        fileprivate var method: MethodType
-
-        private init(method: MethodType, products: [StubProduct]) {
-            self.method = method
-            super.init(products)
-        }
-
-
-    }
-
-    public struct Verify {
-        fileprivate var method: MethodType
-
-        public static func screenshot(_ screenshotId: Parameter<Int>, completion: Parameter<(Result<[Screenshot], APIError>) -> Void>) -> Verify { return Verify(method: .m_screenshot__screenshotIdcompletion_completion(`screenshotId`, `completion`))}
-    }
-
-    public struct Perform {
-        fileprivate var method: MethodType
-        var performs: Any
-
-        public static func screenshot(_ screenshotId: Parameter<Int>, completion: Parameter<(Result<[Screenshot], APIError>) -> Void>, perform: @escaping (Int, @escaping (Result<[Screenshot], APIError>) -> Void) -> Void) -> Perform {
-            return Perform(method: .m_screenshot__screenshotIdcompletion_completion(`screenshotId`, `completion`), performs: perform)
         }
     }
 

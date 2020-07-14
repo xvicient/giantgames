@@ -9,30 +9,27 @@
 import Foundation
 
 final class GameDetailInteractor {
-    let coverService: CoverServiceApi
-    let screenshotService: ScreenshotServiceApi
+    let gameImageService: GameImageServiceApi
 
-    init(coverService: CoverServiceApi,
-         screenshotService: ScreenshotServiceApi) {
-        self.coverService = coverService
-        self.screenshotService = screenshotService
+    init(gameImageService: GameImageServiceApi) {
+        self.gameImageService = gameImageService
     }
 }
 
 extension GameDetailInteractor: GameDetailInteractorProtocol {
-    func coverURL(_ coverId: Int, completion: @escaping (Result<URL?, APIError>) -> Void) {
-        coverService.cover(coverId) {
-            completion($0.map { $0.compactMap { $0.url }.first })
+    func coverURL(_ id: Int, completion: @escaping (Result<URL?, APIError>) -> Void) {
+        gameImageService.cover(id) {
+            completion($0.map { $0.compactMap { $0.url(.medium) }.first })
         }
     }
 
-    func screenshotURLs(_ screenshotIds: [Int], completion: @escaping ([URL]) -> Void) {
+    func screenshotURLs(_ ids: [Int], completion: @escaping ([URL]) -> Void) {
         var screenshotURLs = [URL]()
         let group = DispatchGroup()
 
-        screenshotIds.forEach { [weak self] screenshotId in
+        ids.forEach { [weak self] id in
             group.enter()
-            self?.screenshotURL(screenshotId) {
+            self?.screenshotURL(id) {
                 if case let .success(url) = $0, let screenshotURL = url {
                     screenshotURLs += [screenshotURL]
                 }
@@ -45,9 +42,9 @@ extension GameDetailInteractor: GameDetailInteractorProtocol {
 }
 
 private extension GameDetailInteractor {
-    func screenshotURL(_ screenshotId: Int, completion: @escaping (Result<URL?, APIError>) -> Void) {
-        screenshotService.screenshot(screenshotId) {
-            completion($0.map { $0.compactMap { $0.url }.first })
+    func screenshotURL(_ id: Int, completion: @escaping (Result<URL?, APIError>) -> Void) {
+        gameImageService.screenshot(id) {
+            completion($0.map { $0.compactMap { $0.url(.large) }.first })
         }
     }
 }

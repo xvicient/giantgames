@@ -1,5 +1,5 @@
 //
-//  Cover.swift
+//  Image.swift
 //  GiantGames
 //
 //  Created by Xavier on 14/07/2020.
@@ -8,9 +8,13 @@
 
 import Foundation
 
-struct Cover {
+struct Image {
     let id: Int
-    let url: URL?
+    let imageId: Int
     let width: Int
     let height: Int
+
+    func url(_ size: ImageSize) -> URL? {
+        size.url(imageId)
+    }
 }

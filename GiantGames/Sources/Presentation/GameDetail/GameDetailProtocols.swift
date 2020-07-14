@@ -31,8 +31,8 @@ protocol GameDetailPresenterProtocol {
 
 // sourcery: AutoMockable
 protocol GameDetailInteractorProtocol {
-    func coverURL(_ coverId: Int, completion: @escaping (Result<URL?, APIError>) -> Void)
-    func screenshotURLs(_ screenshotIds: [Int], completion: @escaping ([URL]) -> Void)
+    func coverURL(_ id: Int, completion: @escaping (Result<URL?, APIError>) -> Void)
+    func screenshotURLs(_ id: [Int], completion: @escaping ([URL]) -> Void)
 }
 
 // MARK: - View

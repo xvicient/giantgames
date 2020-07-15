@@ -7,7 +7,7 @@
 //
 
 extension Endpoint {
-    static func screenshot(_ id: Int) -> Endpoint {
+    static func screenshots(_ id: Int) -> Endpoint {
         Endpoint(path: "screenshots/\(id)/",
                  method: .get,
                  headers: nil,

@@ -1,3 +1,5 @@
 "generic_error_message" = "Se ha producido un error.";
 "alert_ok_title" = "Ok";
 "top_games_title" = "Top games";
+"game_detail_images_section_title" = "Images";
+"game_detail_videos_section_title" = "Videos";

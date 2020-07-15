@@ -34,7 +34,6 @@ extension UIImageView {
             window.addSubview(newImageView)
             UIView.animate(withDuration: 0.25) { newImageView.alpha = 1.0 }
             window.topViewController()?.view.endEditing(true)
-            window.topViewController()?.navigationController?.isNavigationBarHidden = true
             window.topViewController()?.tabBarController?.tabBar.isHidden = true
         }
     }

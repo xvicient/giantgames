@@ -19,9 +19,15 @@ final class GameDetailBuilder {
 extension GameDetailBuilder: GameDetailBuilderProtocol {
     func buildModule(_ game: Game) -> UIViewController {
         let view = GameDetailViewController(nibName: String(describing: GameDetailViewController.self), bundle: nil)
-        let interactor = GameDetailInteractor(gameImageService: container.resolve(GameImageServiceApi.self))
+        let interactor = GameDetailInteractor(gameImageService: container.resolve(GameImageServiceApi.self),
+                                              gameVideoService: container.resolve(GameVideoServiceApi.self))
         let router = GameDetailRouter(viewController: view, container: container)
-        let presenter = GameDetailPresenter(view: view, interactor: interactor, router: router, game: game)
+        let locales = GameDetailLocales()
+        let presenter = GameDetailPresenter(view: view,
+                                            interactor: interactor,
+                                            router: router,
+                                            locales: locales,
+                                            game: game)
 
         view.presenter = presenter
         

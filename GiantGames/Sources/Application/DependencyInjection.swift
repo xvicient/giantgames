@@ -104,5 +104,9 @@ struct DependenciesRegistration: Dependencies {
         container.register(GameImageServiceApi.self) {
             GameImageService(apiClient: $0.resolve(APIClientApi.self)!)
         }
+
+        container.register(GameVideoServiceApi.self) {
+            GameVideoService(apiClient: $0.resolve(APIClientApi.self)!)
+        }
     }
 }

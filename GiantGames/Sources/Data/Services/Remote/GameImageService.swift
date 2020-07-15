@@ -10,8 +10,8 @@
 
 // sourcery: AutoMockable
 protocol GameImageServiceApi {
-    func cover(_ id: Int, completion: @escaping (Result<[GameImage], APIError>) -> Void)
-    func screenshot(_ id: Int, completion: @escaping (Result<[GameImage], APIError>) -> Void)
+    func covers(_ id: Int, completion: @escaping (Result<[GameImage], APIError>) -> Void)
+    func screenshots(_ id: Int, completion: @escaping (Result<[GameImage], APIError>) -> Void)
 }
 
 // MARK: - GameImageService
@@ -25,14 +25,14 @@ struct GameImageService {
 }
 
 extension GameImageService: GameImageServiceApi {
-    func cover(_ id: Int, completion: @escaping (Result<[GameImage], APIError>) -> Void) {
-        apiClient.request(.cover(id)) { (result: Result<[GameImageCodable], APIError>) in
+    func covers(_ id: Int, completion: @escaping (Result<[GameImage], APIError>) -> Void) {
+        apiClient.request(.covers(id)) { (result: Result<[GameImageCodable], APIError>) in
             completion(result.map { $0.map { $0.toDomain() }})
         }
     }
 
-    func screenshot(_ id: Int, completion: @escaping (Result<[GameImage], APIError>) -> Void) {
-        apiClient.request(.screenshot(id)) { (result: Result<[GameImageCodable], APIError>) in
+    func screenshots(_ id: Int, completion: @escaping (Result<[GameImage], APIError>) -> Void) {
+        apiClient.request(.screenshots(id)) { (result: Result<[GameImageCodable], APIError>) in
             completion(result.map { $0.map { $0.toDomain() }})
         }
     }

@@ -12,8 +12,9 @@ struct GameCodable: Codable, Domain {
     let cover: Int
     let storyline: String?
     let screenshots: [Int]?
+    let videos: [Int]?
 
     func toDomain() -> Game {
-        Game(id: id, name: name, cover: cover, storyline: storyline, screenshots: screenshots)
+        Game(id: id, name: name, cover: cover, storyline: storyline, screenshots: screenshots, videos: videos)
     }
 }

@@ -7,7 +7,7 @@
 //
 
 extension Endpoint {
-    static func cover(_ id: Int) -> Endpoint {
+    static func covers(_ id: Int) -> Endpoint {
         Endpoint(path: "covers/\(id)/",
                  method: .get,
                  headers: nil,

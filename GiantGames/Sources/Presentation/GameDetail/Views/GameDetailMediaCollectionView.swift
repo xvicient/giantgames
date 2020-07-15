@@ -9,15 +9,18 @@
 import UIKit
 
 class GameDetailMediaCollectionView: UICollectionView {
-    var urls = [URL]() {
-        didSet {
-            reloadData()
-        }
-    }
+    private var urls = [URL]()
+    private var type: GameDetailViewMediaData.MediaType = .image
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
+    }
+
+    func show(_ data: GameDetailViewMediaData) {
+        urls = data.urls
+        type = data.type
+        reloadData()
     }
 }
 
@@ -25,7 +28,8 @@ class GameDetailMediaCollectionView: UICollectionView {
 
 private extension GameDetailMediaCollectionView {
     func setup() {
-        registerCells(GameDetailMediaCollectionViewCell.self)
+        registerCells(GameDetailImageCollectionViewCell.self,
+                      GameDetailVideoCollectionViewCell.self)
         delegate = self
         dataSource = self
     }
@@ -39,8 +43,14 @@ extension GameDetailMediaCollectionView: UICollectionViewDelegate, UICollectionV
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: GameDetailMediaCollectionViewCell = collectionView.dequeue(for: indexPath)
-        cell.setup(urls[indexPath.row])
-        return cell
+        switch type {
+        case .image:
+            let cell: GameDetailImageCollectionViewCell = collectionView.dequeue(for: indexPath)
+            cell.setup(urls[indexPath.row])
+            return cell
+        case .video:
+            let cell: GameDetailVideoCollectionViewCell = collectionView.dequeue(for: indexPath)
+            return cell
+        }
     }
 }

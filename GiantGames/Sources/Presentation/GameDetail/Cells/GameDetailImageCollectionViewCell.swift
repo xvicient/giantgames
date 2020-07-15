@@ -1,5 +1,5 @@
 //
-//  GameDetailMediaCollectionViewCell.swift
+//  GameDetailImageCollectionViewCell.swift
 //  GiantGames
 //
 //  Created by Xavier on 14/07/2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameDetailMediaCollectionViewCell: UICollectionViewCell {
+class GameDetailImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet private var mediaImageView: UIImageView! {
         didSet {
             mediaImageView.goFullScreenOnTap(true)

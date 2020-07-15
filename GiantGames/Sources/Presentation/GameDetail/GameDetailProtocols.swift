@@ -33,6 +33,7 @@ protocol GameDetailPresenterProtocol {
 protocol GameDetailInteractorProtocol {
     func coverURL(_ id: Int, completion: @escaping (Result<URL?, APIError>) -> Void)
     func screenshotURLs(_ id: [Int], completion: @escaping ([URL]) -> Void)
+    func videoURLs(_ ids: [Int], completion: @escaping ([URL]) -> Void)
 }
 
 // MARK: - View
@@ -40,7 +41,7 @@ protocol GameDetailInteractorProtocol {
 enum GameDetailViewState {
     case showView(_ data: GameDetailViewData)
     case showCover(_ url: URL)
-    case showScreenshots(_ urls: [URL])
+    case showMedia(_ data: GameDetailViewMediaData)
 }
 
 // sourcery: AutoMockable

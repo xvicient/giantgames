@@ -21,7 +21,7 @@ struct GameImage {
         case large = "screenshot_med"
 
         func url(_ id: String) -> URL? {
-            URL(string: String(format: "https://images.igdb.com/igdb/image/upload/t_%@/%@.jpg", rawValue, id))
+            URL(string: "https://images.igdb.com/igdb/image/upload/t_\(rawValue)/\(id).jpg")
         }
     }
 

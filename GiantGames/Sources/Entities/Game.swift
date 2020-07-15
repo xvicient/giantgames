@@ -12,4 +12,5 @@ struct Game: Equatable {
     let cover: Int
     let storyline: String?
     let screenshots: [Int]?
+    let videos: [Int]?
 }

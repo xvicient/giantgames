@@ -11,6 +11,18 @@ import UIKit
 struct GameDetailViewData {
     let gameName: String
     let gameStoryline: String?
+    let imagesTitle: String
+    let videosTitle: String
+}
+
+struct GameDetailViewMediaData {
+    let type: MediaType
+    let urls: [URL]
+
+    enum MediaType {
+        case image
+        case video
+    }
 }
 
 final class GameDetailViewController: UIViewController {
@@ -22,7 +34,12 @@ final class GameDetailViewController: UIViewController {
     }
     @IBOutlet private var ganeNameLabel: UILabel!
     @IBOutlet private var gameStorylineLabel: UILabel!
+    @IBOutlet private var imagesView: UIView!
     @IBOutlet private var imageCollectionView: GameDetailMediaCollectionView!
+    @IBOutlet private var videosView: UIView!
+    @IBOutlet private var videoCollectionView: GameDetailMediaCollectionView!
+    @IBOutlet private var imagesTitleLabel: UILabel!
+    @IBOutlet private var videosTitleLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,12 +52,12 @@ final class GameDetailViewController: UIViewController {
 extension GameDetailViewController: GameDetailViewProtocol {
     func render(state: GameDetailViewState) {
         switch state {
-        case let .showCover(url):
-            showCover(url)
         case let .showView(data):
             showView(data)
-        case let .showScreenshots(urls):
-            showScreenshots(urls)
+        case let .showCover(url):
+            showCover(url)
+        case let .showMedia(data):
+            showMedia(data)
         }
     }
 }
@@ -48,16 +65,25 @@ extension GameDetailViewController: GameDetailViewProtocol {
 // MARK: - Private
 
 private extension GameDetailViewController {
+    func showView(_ data: GameDetailViewData) {
+        ganeNameLabel.text = data.gameName
+        gameStorylineLabel.text = data.gameStoryline
+        imagesTitleLabel.text = data.imagesTitle
+        videosTitleLabel.text = data.videosTitle
+    }
+
     func showCover(_ url: URL) {
         coverImageView.load(url: url)
     }
 
-    func showView(_ data: GameDetailViewData) {
-        ganeNameLabel.text = data.gameName
-        gameStorylineLabel.text = data.gameStoryline
-    }
-
-    func showScreenshots(_ urls: [URL]) {
-        imageCollectionView.urls = urls
+    func showMedia(_ data: GameDetailViewMediaData) {
+        switch data.type {
+        case .image:
+            imagesView.isHidden = false
+            imageCollectionView.show(data)
+        case .video:
+            videosView.isHidden = false
+            videoCollectionView.show(data)
+        }
     }
 }

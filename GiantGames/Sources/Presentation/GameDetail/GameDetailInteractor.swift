@@ -22,7 +22,7 @@ final class GameDetailInteractor {
 extension GameDetailInteractor: GameDetailInteractorProtocol {
     func coverURL(_ id: Int, completion: @escaping (Result<URL?, APIError>) -> Void) {
         gameImageService.covers(id) {
-            completion($0.map { $0.compactMap { $0.url(.medium) }.first })
+            completion($0.map { $0.compactMap { $0.url(.small) }.first })
         }
     }
 

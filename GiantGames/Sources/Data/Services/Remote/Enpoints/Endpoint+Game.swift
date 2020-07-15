@@ -13,7 +13,7 @@ extension Endpoint {
                  headers: nil,
                  queryParams: ["fields": "name,cover,storyline,screenshots,videos",
                                "order": "popularity:desc",
-                               "limit": "20",
+                               "limit": "10",
                                "offset": offset],
                  body: nil)
     }

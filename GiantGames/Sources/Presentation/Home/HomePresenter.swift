@@ -14,9 +14,9 @@ final class HomePresenter {
     private let router: HomeRouterProtocol
     private let locales: HomeLocales
     private var games = [Game]()
-    private let pageSize = 20
+    private let pageSize = 10
     private var currentPage = 0
-    private let pagintaionThreshold = 6
+    private let pagintaionThreshold = 2
     private var pageOffset: Int { currentPage * pageSize }
     private var isFetching = false
     

@@ -89,11 +89,17 @@ private extension GameDetailViewController {
     func showMedia(_ data: GameDetailViewMediaData) {
         switch data.type {
         case .image:
-            imagesView.isHidden = false
             imageCollectionView.show(data)
+            imagesView.isHidden = false
+            UIView.animate(withDuration: 0.25) { [unowned self] in
+                self.imagesView.alpha = 1.0
+            }
         case .video:
-            videosView.isHidden = false
             videoCollectionView.show(data)
+            videosView.isHidden = false
+            UIView.animate(withDuration: 0.25) { [unowned self] in
+                self.videosView.alpha = 1.0
+            }
         }
     }
 

@@ -11,6 +11,14 @@ To run the project, clone the repo and run `pod install` from the root directory
 
 **CocoaPods** 1.9.3
 
+## About architecture
+
+Modular app structured with VIPER architecture. All components of each module have their own responsibility trying to reduce the load and the dependency on controllers.
+
+## About API
+
+Based on [IGDB](https://api-docs.igdb.com) non-commercial free video games API.
+
 ## About frameworks
 
 **SwiftLint** used to enforce Swift style and conventions.<br/>

@@ -10,7 +10,7 @@
 
 struct GameMock {
     static var game: Game {
-        Game(id: 0, name: "Test", cover: 0, storyline: "Test", screenshots: [], videos: [])
+        Game(id: 0, name: "Test", cover: 0, storyline: "Test", screenshots: [1, 2, 3, 4, 5], videos: [1, 2, 3, 4, 5])
     }
 
     static func games(_ count: Int) -> [Game] {
@@ -20,8 +20,8 @@ struct GameMock {
                               name: "Name\(index)",
                               cover: 0,
                               storyline: "Storyline\(index)",
-                              screenshots: [],
-                              videos: []))
+                              screenshots: [1, 2, 3, 4, 5],
+                              videos: [1, 2, 3, 4, 5]))
         }
         return games
     }

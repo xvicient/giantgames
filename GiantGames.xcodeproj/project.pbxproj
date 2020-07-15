@@ -11,6 +11,8 @@
 		C723722624BF3CD8008F9E6D /* GameDetailVideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723722524BF3CD8008F9E6D /* GameDetailVideoCollectionViewCell.swift */; };
 		C723722824BF3CE0008F9E6D /* GameDetailVideoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C723722724BF3CE0008F9E6D /* GameDetailVideoCollectionViewCell.xib */; };
 		C76B01B624BF4BA4006D974B /* GameDetailLocales.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76B01B524BF4BA4006D974B /* GameDetailLocales.swift */; };
+		C76B01B924BFA8EA006D974B /* GameDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76B01B824BFA8EA006D974B /* GameDetailTests.swift */; };
+		C76B01BB24BFAE67006D974B /* GameImageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76B01BA24BFAE67006D974B /* GameImageMock.swift */; };
 		C7901CFB24BE4DB800692F2F /* GameDetailMediaCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7901CFA24BE4DB800692F2F /* GameDetailMediaCollectionView.swift */; };
 		C7901CFE24BE4EF600692F2F /* GameDetailImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7901CFD24BE4EF600692F2F /* GameDetailImageCollectionViewCell.swift */; };
 		C7901D0024BE4EFE00692F2F /* GameDetailImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7901CFF24BE4EFE00692F2F /* GameDetailImageCollectionViewCell.xib */; };
@@ -90,6 +92,8 @@
 		C723722524BF3CD8008F9E6D /* GameDetailVideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailVideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		C723722724BF3CE0008F9E6D /* GameDetailVideoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameDetailVideoCollectionViewCell.xib; sourceTree = "<group>"; };
 		C76B01B524BF4BA4006D974B /* GameDetailLocales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailLocales.swift; sourceTree = "<group>"; };
+		C76B01B824BFA8EA006D974B /* GameDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailTests.swift; sourceTree = "<group>"; };
+		C76B01BA24BFAE67006D974B /* GameImageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameImageMock.swift; sourceTree = "<group>"; };
 		C7901CFA24BE4DB800692F2F /* GameDetailMediaCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailMediaCollectionView.swift; sourceTree = "<group>"; };
 		C7901CFD24BE4EF600692F2F /* GameDetailImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		C7901CFF24BE4EFE00692F2F /* GameDetailImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameDetailImageCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -175,6 +179,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C76B01B724BFA8D4006D974B /* GameDetail */ = {
+			isa = PBXGroup;
+			children = (
+				C76B01B824BFA8EA006D974B /* GameDetailTests.swift */,
+			);
+			path = GameDetail;
+			sourceTree = "<group>";
+		};
 		C7901CF924BE4D8700692F2F /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,7 +459,7 @@
 		C7B514FE24BBB059003760E1 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				C7B5150824BC3D9B003760E1 /* Data */,
+				C7B5150924BC3DB0003760E1 /* Mocks */,
 				C7B514FF24BBB060003760E1 /* Presentation */,
 			);
 			path = Sources;
@@ -456,6 +468,7 @@
 		C7B514FF24BBB060003760E1 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C76B01B724BFA8D4006D974B /* GameDetail */,
 				C7B5150024BBB068003760E1 /* Home */,
 			);
 			path = Presentation;
@@ -478,20 +491,13 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		C7B5150824BC3D9B003760E1 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				C7B5150924BC3DB0003760E1 /* Mock */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
-		C7B5150924BC3DB0003760E1 /* Mock */ = {
+		C7B5150924BC3DB0003760E1 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
 				C7B5150A24BC3DC4003760E1 /* GameMock.swift */,
+				C76B01BA24BFAE67006D974B /* GameImageMock.swift */,
 			);
-			path = Mock;
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		D228ACB3DB33ADDF26888791 /* Pods */ = {
@@ -779,7 +785,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C76B01B924BFA8EA006D974B /* GameDetailTests.swift in Sources */,
 				C7B5150724BBB4B2003760E1 /* Mock.generated.swift in Sources */,
+				C76B01BB24BFAE67006D974B /* GameImageMock.swift in Sources */,
 				C7B5150B24BC3DC4003760E1 /* GameMock.swift in Sources */,
 				C7B5150524BBB46D003760E1 /* HomeTests.swift in Sources */,
 			);

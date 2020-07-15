@@ -8,18 +8,18 @@
 
 import UIKit
 
-struct GameDetailViewData {
+struct GameDetailViewData: Equatable {
     let gameName: String
     let gameStoryline: String?
     let imagesTitle: String
     let videosTitle: String
 }
 
-struct GameDetailViewMediaData {
+struct GameDetailViewMediaData: Equatable {
     let type: MediaType
     let urls: [URL]
 
-    enum MediaType {
+    enum MediaType: Equatable {
         case image
         case video
     }

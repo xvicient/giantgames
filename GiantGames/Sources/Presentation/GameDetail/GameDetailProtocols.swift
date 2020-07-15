@@ -27,8 +27,8 @@ protocol GameDetailRouterProtocol {
 // sourcery: AutoMockable
 protocol GameDetailPresenterProtocol {
     func viewDidLoad()
-    func didSelectVideo(_ index: Int)
     func didSelectImage(_ index: Int)
+    func didSelectVideo(_ index: Int)
 }
 
 // MARK: - Interactor
@@ -42,7 +42,7 @@ protocol GameDetailInteractorProtocol {
 
 // MARK: - View
 
-enum GameDetailViewState {
+enum GameDetailViewState: Equatable {
     case showView(_ data: GameDetailViewData)
     case showCover(_ url: URL)
     case showMedia(_ data: GameDetailViewMediaData)

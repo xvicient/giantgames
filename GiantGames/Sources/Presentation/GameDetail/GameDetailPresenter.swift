@@ -40,13 +40,13 @@ extension GameDetailPresenter: GameDetailPresenterProtocol {
         showVideos()
     }
 
-    func didSelectVideo(_ index: Int) {
-        router.playVideo(videoURLs[index])
-    }
-
     func didSelectImage(_ index: Int) {
         guard let url = images[index].url(.large) else { return }
         view.render(state: .showFullscreen(url))
+    }
+
+    func didSelectVideo(_ index: Int) {
+        router.playVideo(videoURLs[index])
     }
 }
 

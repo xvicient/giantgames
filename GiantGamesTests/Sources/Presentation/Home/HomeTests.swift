@@ -58,7 +58,7 @@ class HomePresenterTests: XCTestCase {
     private let routerMock = HomeRouterProtocolMock(sequencing: .lastWrittenResolvedFirst, stubbing: .wrap)
     private let viewMock = HomeViewProtocolMock(sequencing: .lastWrittenResolvedFirst, stubbing: .wrap)
     private let locales = HomeLocales()
-    private let gamesMock = GameMock.games(20)
+    private let gamesMock = GameMock.games(10)
 
     override func setUp() {
         super.setUp()
@@ -110,19 +110,19 @@ class HomePresenterTests: XCTestCase {
         mockGames(.success(gamesMock))
         presenter.viewDidLoad()
 
-        presenter.willDisplayCell(13)
+        presenter.willDisplayCell(7)
 
-        Verify(interactorMock, 0, .topGames(offset: .value("20"), completion: .any))
+        Verify(interactorMock, 0, .topGames(offset: .value("10"), completion: .any))
     }
 
     func test_paginationPerformed() {
         mockGames(.success(gamesMock))
         presenter.viewDidLoad()
 
-        presenter.willDisplayCell(14)
+        presenter.willDisplayCell(8)
 
         Verify(viewMock, 1, .render(state: .value(.showLoading(HomeViewLoadingData(position: .bottom, on: true)))))
-        Verify(interactorMock, 1, .topGames(offset: .value("20"), completion: .any))
+        Verify(interactorMock, 1, .topGames(offset: .value("10"), completion: .any))
         Verify(viewMock, 1, .render(state: .value(.showLoading(HomeViewLoadingData(position: .bottom, on: false)))))
     }
 

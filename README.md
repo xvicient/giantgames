@@ -13,7 +13,7 @@ To run the project, clone the repo and run `pod install` from the root directory
 
 ## About architecture
 
-Modular app structured with VIPER architecture. All components of each module have their own responsibility trying to reduce the load and the dependency on controllers.
+Modular app structured using VIPER architecture. All components of each module have their own responsibility trying to reduce the load and the dependency on controllers.
 
 ## About API
 

@@ -37,7 +37,11 @@ final class GameDetailViewController: UIViewController {
     @IBOutlet private var imagesView: UIView!
     @IBOutlet private var imageCollectionView: GameDetailMediaCollectionView!
     @IBOutlet private var videosView: UIView!
-    @IBOutlet private var videoCollectionView: GameDetailMediaCollectionView!
+    @IBOutlet private var videoCollectionView: GameDetailMediaCollectionView! {
+        didSet {
+            videoCollectionView.mediaDelegate = self
+        }
+    }
     @IBOutlet private var imagesTitleLabel: UILabel!
     @IBOutlet private var videosTitleLabel: UILabel!
 
@@ -85,5 +89,13 @@ private extension GameDetailViewController {
             videosView.isHidden = false
             videoCollectionView.show(data)
         }
+    }
+}
+
+// MARK: - GameDetailMediaCollectionViewDelegatePrivate
+
+extension GameDetailViewController: GameDetailMediaCollectionViewDelegate {
+    func didSelectVideo(_ index: Int) {
+        presenter.didSelectVideo(index)
     }
 }

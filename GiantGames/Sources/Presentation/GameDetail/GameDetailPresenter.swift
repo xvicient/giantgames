@@ -14,6 +14,7 @@ final class GameDetailPresenter {
     private let router: GameDetailRouterProtocol
     private let locales: GameDetailLocales
     private let game: Game
+    private var videoURLs = [URL]()
     
     init(view: GameDetailViewProtocol,
          interactor: GameDetailInteractorProtocol,
@@ -36,6 +37,10 @@ extension GameDetailPresenter: GameDetailPresenterProtocol {
         showCover()
         showScreenshots()
         showVideos()
+    }
+
+    func didSelectVideo(_ index: Int) {
+        router.playVideo(videoURLs[index])
     }
 }
 
@@ -74,6 +79,7 @@ private extension GameDetailPresenter {
         guard let videoIds = game.videos, !videoIds.isEmpty else { return }
         interactor.videoURLs(videoIds) { [weak self] urls in
             guard let self = self else { return }
+            self.videoURLs = urls
             self.view.render(state: .showMedia(GameDetailViewMediaData(type: .video, urls: urls)))
         }
     }

@@ -8,7 +8,12 @@
 
 import UIKit
 
+protocol GameDetailMediaCollectionViewDelegate: class {
+    func didSelectVideo(_ index: Int)
+}
+
 class GameDetailMediaCollectionView: UICollectionView {
+    weak var mediaDelegate: GameDetailMediaCollectionViewDelegate?
     private var urls = [URL]()
     private var type: GameDetailViewMediaData.MediaType = .image
 
@@ -51,6 +56,13 @@ extension GameDetailMediaCollectionView: UICollectionViewDelegate, UICollectionV
         case .video:
             let cell: GameDetailVideoCollectionViewCell = collectionView.dequeue(for: indexPath)
             return cell
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch type {
+        case .image: break
+        case .video: mediaDelegate?.didSelectVideo(indexPath.row)
         }
     }
 }

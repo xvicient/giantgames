@@ -199,8 +199,8 @@
 		C79A54A124BD05EA00AC0C46 /* GameDetail */ = {
 			isa = PBXGroup;
 			children = (
-				C7901CF924BE4D8700692F2F /* Views */,
 				C7901CFC24BE4EDA00692F2F /* Cells */,
+				C7901CF924BE4D8700692F2F /* Views */,
 				C79A54A624BD060200AC0C46 /* GameDetailBuilder.swift */,
 				C79A54A724BD060200AC0C46 /* GameDetailInteractor.swift */,
 				C76B01B524BF4BA4006D974B /* GameDetailLocales.swift */,

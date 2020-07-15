@@ -14,6 +14,6 @@ struct GameVideo {
 
     /// based on igdb api game videos reference
     var url: URL? {
-        URL(string: "https://www.youtube.com/watch?v=\(id)")
+        URL(string: "https://youtu.be/\(id)")
     }
 }

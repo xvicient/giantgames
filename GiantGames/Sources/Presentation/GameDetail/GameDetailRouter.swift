@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 final class GameDetailRouter {
     private weak var viewController: UIViewController!
@@ -18,4 +19,10 @@ final class GameDetailRouter {
     }
 }
 
-extension GameDetailRouter: GameDetailRouterProtocol {}
+extension GameDetailRouter: GameDetailRouterProtocol {
+    func playVideo(_ url: URL) {
+        let safari = SFSafariViewController(url: url)
+        safari.modalPresentationStyle = .popover
+        viewController.present(safari, animated: true)
+    }
+}

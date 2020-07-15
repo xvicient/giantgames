@@ -18,13 +18,16 @@ protocol GameDetailBuilderProtocol {
 // MARK: - Router
 
 // sourcery: AutoMockable
-protocol GameDetailRouterProtocol {}
+protocol GameDetailRouterProtocol {
+    func playVideo(_ url: URL)
+}
 
 // MARK: - Presenter
 
 // sourcery: AutoMockable
 protocol GameDetailPresenterProtocol {
     func viewDidLoad()
+    func didSelectVideo(_ index: Int)
 }
 
 // MARK: - Interactor

@@ -40,7 +40,7 @@ extension GameDetailViewController: GameDetailViewProtocol {
         case let .showView(data):
             showView(data)
         case let .showScreenshots(urls):
-            imageCollectionView.urls = urls
+            showScreenshots(urls)
         }
     }
 }
@@ -55,5 +55,9 @@ private extension GameDetailViewController {
     func showView(_ data: GameDetailViewData) {
         ganeNameLabel.text = data.gameName
         gameStorylineLabel.text = data.gameStoryline
+    }
+
+    func showScreenshots(_ urls: [URL]) {
+        imageCollectionView.urls = urls
     }
 }

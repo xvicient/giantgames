@@ -14,7 +14,8 @@ struct GameImage {
     let width: Int
     let height: Int
 
-    enum ImageSize: String {
+    /// based on igdb api images reference https://api-docs.igdb.com/?swift#images
+    enum Size: String {
         case small = "cover_small"
         case medium = "cover_big"
         case large = "screenshot_med"
@@ -24,7 +25,7 @@ struct GameImage {
         }
     }
 
-    func url(_ size: ImageSize) -> URL? {
+    func url(_ size: Size) -> URL? {
         size.url(imageId)
     }
 }

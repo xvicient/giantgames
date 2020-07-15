@@ -9,13 +9,9 @@
 import UIKit
 import Nuke
 
-public extension UIImageView {
-    func load(url: URL, showPlaceholder: Bool = true, _ completion: ((UIImage?, ImagePipeline.Error?) -> Void)? = nil) {
-        let options = ImageLoadingOptions(
-            placeholder: showPlaceholder ? #imageLiteral(resourceName: "placeholder") : nil,
-            failureImage: showPlaceholder ? #imageLiteral(resourceName: "placeholder") : nil,
-            contentModes: .init(success: .scaleAspectFill, failure: .scaleAspectFill, placeholder: .scaleAspectFill)
-        )
+extension UIImageView {
+    func load(url: URL, _ completion: ((UIImage?, ImagePipeline.Error?) -> Void)? = nil) {
+        let options = ImageLoadingOptions(placeholder: #imageLiteral(resourceName: "placeholder"), failureImage: #imageLiteral(resourceName: "placeholder"))
         Nuke.loadImage(with: url, options: options, into: self) { result in
             switch result {
             case let .success(response): completion?(response.image, nil)

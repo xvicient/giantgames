@@ -14,6 +14,7 @@ final class GameDetailPresenter {
     private let router: GameDetailRouterProtocol
     private let locales: GameDetailLocales
     private let game: Game
+    private var images = [GameImage]()
     private var videoURLs = [URL]()
     
     init(view: GameDetailViewProtocol,
@@ -42,6 +43,11 @@ extension GameDetailPresenter: GameDetailPresenterProtocol {
     func didSelectVideo(_ index: Int) {
         router.playVideo(videoURLs[index])
     }
+
+    func didSelectImage(_ index: Int) {
+        guard let url = images[index].url(.large) else { return }
+        view.render(state: .showFullscreen(url))
+    }
 }
 
 // MARK: - Private
@@ -69,9 +75,10 @@ private extension GameDetailPresenter {
 
     func showScreenshots() {
         guard let screenshotIds = game.screenshots, !screenshotIds.isEmpty else { return }
-        interactor.screenshotURLs(screenshotIds) { [weak self] urls in
+        interactor.gameImages(screenshotIds) { [weak self] images in
             guard let self = self else { return }
-            self.view.render(state: .showMedia(GameDetailViewMediaData(type: .image, urls: urls)))
+            self.images = images
+            self.view.render(state: .showMedia(GameDetailViewMediaData(type: .image, urls: images.compactMap { $0.url(.medium) })))
         }
     }
 

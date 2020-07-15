@@ -35,7 +35,11 @@ final class GameDetailViewController: UIViewController {
     @IBOutlet private var ganeNameLabel: UILabel!
     @IBOutlet private var gameStorylineLabel: UILabel!
     @IBOutlet private var imagesView: UIView!
-    @IBOutlet private var imageCollectionView: GameDetailMediaCollectionView!
+    @IBOutlet private var imageCollectionView: GameDetailMediaCollectionView! {
+        didSet {
+            imageCollectionView.mediaDelegate = self
+        }
+    }
     @IBOutlet private var videosView: UIView!
     @IBOutlet private var videoCollectionView: GameDetailMediaCollectionView! {
         didSet {
@@ -62,6 +66,8 @@ extension GameDetailViewController: GameDetailViewProtocol {
             showCover(url)
         case let .showMedia(data):
             showMedia(data)
+        case let .showFullscreen(url):
+            showFullscreen(url)
         }
     }
 }
@@ -90,6 +96,30 @@ private extension GameDetailViewController {
             videoCollectionView.show(data)
         }
     }
+
+    func showFullscreen(_ url: URL) {
+        guard let app = UIApplication.shared.delegate as? AppDelegate, let window = app.window else { return }
+
+        let imageView = UIImageView()
+        imageView.load(url: url)
+        imageView.frame = UIScreen.main.bounds
+        imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = .black
+        imageView.isUserInteractionEnabled = true
+        imageView.alpha = 0.0
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                              action: #selector(dismissFullscreen(recognizer:))))
+        window.addSubview(imageView)
+        UIView.animate(withDuration: 0.25) { imageView.alpha = 1.0 }
+    }
+
+    @objc func dismissFullscreen(recognizer: UITapGestureRecognizer) {
+        UIView.animate(withDuration: 0.25, animations: {
+            recognizer.view?.alpha = 0.0
+        }, completion: { _ in
+            recognizer.view?.removeFromSuperview()
+        })
+    }
 }
 
 // MARK: - GameDetailMediaCollectionViewDelegatePrivate
@@ -97,5 +127,9 @@ private extension GameDetailViewController {
 extension GameDetailViewController: GameDetailMediaCollectionViewDelegate {
     func didSelectVideo(_ index: Int) {
         presenter.didSelectVideo(index)
+    }
+
+    func didSelectImage(_ index: Int) {
+        presenter.didSelectImage(index)
     }
 }

@@ -9,11 +9,7 @@
 import UIKit
 
 class GameDetailImageCollectionViewCell: UICollectionViewCell {
-    @IBOutlet private var mediaImageView: UIImageView! {
-        didSet {
-            mediaImageView.goFullScreenOnTap(true)
-        }
-    }
+    @IBOutlet private var mediaImageView: UIImageView!
 
     func setup(_ url: URL) {
         mediaImageView.load(url: url)

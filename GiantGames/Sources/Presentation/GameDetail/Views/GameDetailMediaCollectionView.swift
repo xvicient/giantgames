@@ -10,6 +10,7 @@ import UIKit
 
 protocol GameDetailMediaCollectionViewDelegate: class {
     func didSelectVideo(_ index: Int)
+    func didSelectImage(_ index: Int)
 }
 
 class GameDetailMediaCollectionView: UICollectionView {
@@ -61,7 +62,7 @@ extension GameDetailMediaCollectionView: UICollectionViewDelegate, UICollectionV
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch type {
-        case .image: break
+        case .image: mediaDelegate?.didSelectImage(indexPath.row)
         case .video: mediaDelegate?.didSelectVideo(indexPath.row)
         }
     }

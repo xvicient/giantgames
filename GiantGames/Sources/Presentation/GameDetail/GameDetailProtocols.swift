@@ -28,6 +28,7 @@ protocol GameDetailRouterProtocol {
 protocol GameDetailPresenterProtocol {
     func viewDidLoad()
     func didSelectVideo(_ index: Int)
+    func didSelectImage(_ index: Int)
 }
 
 // MARK: - Interactor
@@ -35,7 +36,7 @@ protocol GameDetailPresenterProtocol {
 // sourcery: AutoMockable
 protocol GameDetailInteractorProtocol {
     func coverURL(_ id: Int, completion: @escaping (Result<URL?, APIError>) -> Void)
-    func screenshotURLs(_ id: [Int], completion: @escaping ([URL]) -> Void)
+    func gameImages(_ ids: [Int], completion: @escaping ([GameImage]) -> Void)
     func videoURLs(_ ids: [Int], completion: @escaping ([URL]) -> Void)
 }
 
@@ -45,6 +46,7 @@ enum GameDetailViewState {
     case showView(_ data: GameDetailViewData)
     case showCover(_ url: URL)
     case showMedia(_ data: GameDetailViewMediaData)
+    case showFullscreen(_ url: URL)
 }
 
 // sourcery: AutoMockable

@@ -13,20 +13,23 @@ protocol GameDetailMediaCollectionViewDelegate: class {
     func didSelectImage(_ index: Int)
 }
 
+enum GameDetailMediaCollectionType {
+    case image
+    case video
+}
+
 class GameDetailMediaCollectionView: UICollectionView {
     weak var mediaDelegate: GameDetailMediaCollectionViewDelegate?
-    private var urls = [URL]()
-    private var type: GameDetailViewMediaData.MediaType = .image
+    var type: GameDetailMediaCollectionType?
+    var urls = [URL]() {
+        didSet {
+            reloadData()
+        }
+    }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
-    }
-
-    func show(_ data: GameDetailViewMediaData) {
-        urls = data.urls
-        type = data.type
-        reloadData()
     }
 }
 
@@ -49,7 +52,7 @@ extension GameDetailMediaCollectionView: UICollectionViewDelegate, UICollectionV
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch type {
+        switch type! {
         case .image:
             let cell: GameDetailImageCollectionViewCell = collectionView.dequeue(for: indexPath)
             cell.setup(urls[indexPath.row])
@@ -61,7 +64,7 @@ extension GameDetailMediaCollectionView: UICollectionViewDelegate, UICollectionV
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch type {
+        switch type! {
         case .image: mediaDelegate?.didSelectImage(indexPath.row)
         case .video: mediaDelegate?.didSelectVideo(indexPath.row)
         }

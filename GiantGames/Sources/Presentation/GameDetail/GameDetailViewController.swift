@@ -15,16 +15,6 @@ struct GameDetailViewData: Equatable {
     let videosTitle: String
 }
 
-struct GameDetailViewMediaData: Equatable {
-    let type: MediaType
-    let urls: [URL]
-
-    enum MediaType: Equatable {
-        case image
-        case video
-    }
-}
-
 final class GameDetailViewController: UIViewController {
     var presenter: GameDetailPresenterProtocol!
     @IBOutlet private var coverImageView: UIImageView! {
@@ -38,12 +28,14 @@ final class GameDetailViewController: UIViewController {
     @IBOutlet private var imageCollectionView: GameDetailMediaCollectionView! {
         didSet {
             imageCollectionView.mediaDelegate = self
+            imageCollectionView.type = .image
         }
     }
     @IBOutlet private var videosView: UIView!
     @IBOutlet private var videoCollectionView: GameDetailMediaCollectionView! {
         didSet {
             videoCollectionView.mediaDelegate = self
+            videoCollectionView.type = .video
         }
     }
     @IBOutlet private var imagesTitleLabel: UILabel!
@@ -64,8 +56,10 @@ extension GameDetailViewController: GameDetailViewProtocol {
             showView(data)
         case let .showCover(url):
             showCover(url)
-        case let .showMedia(data):
-            showMedia(data)
+        case let .showScreenshots(data):
+            showScreenshots(data)
+        case let .showVideos(data):
+            showVideos(data)
         case let .showFullscreen(url):
             showFullscreen(url)
         }
@@ -86,20 +80,19 @@ private extension GameDetailViewController {
         coverImageView.load(url: url)
     }
 
-    func showMedia(_ data: GameDetailViewMediaData) {
-        switch data.type {
-        case .image:
-            imageCollectionView.show(data)
-            imagesView.isHidden = false
-            UIView.animate(withDuration: 0.25) { [unowned self] in
-                self.imagesView.alpha = 1.0
-            }
-        case .video:
-            videoCollectionView.show(data)
-            videosView.isHidden = false
-            UIView.animate(withDuration: 0.25) { [unowned self] in
-                self.videosView.alpha = 1.0
-            }
+    func showScreenshots(_ urls: [URL]) {
+        imageCollectionView.urls = urls
+        imagesView.isHidden = false
+        UIView.animate(withDuration: 0.25) { [unowned self] in
+            self.imagesView.alpha = 1.0
+        }
+    }
+
+    func showVideos(_ urls: [URL]) {
+        videoCollectionView.urls = urls
+        videosView.isHidden = false
+        UIView.animate(withDuration: 0.25) { [unowned self] in
+            self.videosView.alpha = 1.0
         }
     }
 

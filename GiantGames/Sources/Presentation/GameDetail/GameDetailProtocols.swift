@@ -45,7 +45,8 @@ protocol GameDetailInteractorProtocol {
 enum GameDetailViewState: Equatable {
     case showView(_ data: GameDetailViewData)
     case showCover(_ url: URL)
-    case showMedia(_ data: GameDetailViewMediaData)
+    case showScreenshots(_ urls: [URL])
+    case showVideos(_ urls: [URL])
     case showFullscreen(_ url: URL)
 }
 

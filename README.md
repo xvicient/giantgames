@@ -11,20 +11,26 @@ To run the project, clone the repo and run `pod install` from the root directory
 
 **CocoaPods** 1.9.3
 
-## About architecture
+## About
+
+**Architecture**
 
 Modular app structured using VIPER architecture. All components of each module have their own responsibility trying to reduce the load and the dependency on controllers.
 
-## About API
+**API**
 
 Based on [IGDB](https://api-docs.igdb.com) non-commercial free video games API.
 
-## About frameworks
+**Frameworks**
 
-**SwiftLint** used to enforce Swift style and conventions.<br/>
-**Swinject** used to define the app dependencies.<br/>
-**Nuke** used to download and display images on the app.<br/>
-**SwiftyMocky** used to build mocks in runtime. Depends on Sourcery, which scans the source code and generates mocks.
+*SwiftLint* used to enforce Swift style and conventions.<br/>
+*Swinject* used to define the app dependencies.<br/>
+*Nuke* used to download and display images on the app.<br/>
+*SwiftyMocky* used to build mocks in runtime. Depends on Sourcery, which scans the source code and generates mocks.
+
+**Testing**
+
+Full Unit Testing and API data testing.
 
 ## Changes
 

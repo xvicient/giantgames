@@ -84,8 +84,7 @@ class GameDetailPresenterTests: XCTestCase {
         presenter.viewDidLoad()
 
         Verify(interactorMock, 1, .gameImages(.value(game.screenshots!), completion: .any))
-        let data = GameDetailViewMediaData(type: .image, urls: gameImages.compactMap { $0.url(.medium) })
-        Verify(viewMock, 1, .render(state: .value(.showMedia(data))))
+        Verify(viewMock, 1, .render(state: .value(.showScreenshots(gameImages.compactMap { $0.url(.medium) }))))
     }
 
     func test_showVideos() {
@@ -93,8 +92,7 @@ class GameDetailPresenterTests: XCTestCase {
         presenter.viewDidLoad()
 
         Verify(interactorMock, 1, .videoURLs(.value(game.videos!), completion: .any))
-        let data = GameDetailViewMediaData(type: .video, urls: videoURLS)
-        Verify(viewMock, 1, .render(state: .value(.showMedia(data))))
+        Verify(viewMock, 1, .render(state: .value(.showVideos(videoURLS))))
 
     }
 

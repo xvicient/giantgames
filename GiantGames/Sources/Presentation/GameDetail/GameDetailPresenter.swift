@@ -78,7 +78,7 @@ private extension GameDetailPresenter {
         interactor.gameImages(screenshotIds) { [weak self] images in
             guard let self = self else { return }
             self.images = images
-            self.view.render(state: .showMedia(GameDetailViewMediaData(type: .image, urls: images.compactMap { $0.url(.medium) })))
+            self.view.render(state: .showScreenshots(images.compactMap { $0.url(.medium) }))
         }
     }
 
@@ -87,7 +87,7 @@ private extension GameDetailPresenter {
         interactor.videoURLs(videoIds) { [weak self] urls in
             guard let self = self else { return }
             self.videoURLs = urls
-            self.view.render(state: .showMedia(GameDetailViewMediaData(type: .video, urls: urls)))
+            self.view.render(state: .showVideos(urls))
         }
     }
 }

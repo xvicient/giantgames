@@ -408,32 +408,32 @@ open class GameDetailPresenterProtocolMock: GameDetailPresenterProtocol, Mock {
 		perform?()
     }
 
-    open func didSelectVideo(_ index: Int) {
-        addInvocation(.m_didSelectVideo__index(Parameter<Int>.value(`index`)))
-		let perform = methodPerformValue(.m_didSelectVideo__index(Parameter<Int>.value(`index`))) as? (Int) -> Void
-		perform?(`index`)
-    }
-
     open func didSelectImage(_ index: Int) {
         addInvocation(.m_didSelectImage__index(Parameter<Int>.value(`index`)))
 		let perform = methodPerformValue(.m_didSelectImage__index(Parameter<Int>.value(`index`))) as? (Int) -> Void
 		perform?(`index`)
     }
 
+    open func didSelectVideo(_ index: Int) {
+        addInvocation(.m_didSelectVideo__index(Parameter<Int>.value(`index`)))
+		let perform = methodPerformValue(.m_didSelectVideo__index(Parameter<Int>.value(`index`))) as? (Int) -> Void
+		perform?(`index`)
+    }
+
 
     fileprivate enum MethodType {
         case m_viewDidLoad
-        case m_didSelectVideo__index(Parameter<Int>)
         case m_didSelectImage__index(Parameter<Int>)
+        case m_didSelectVideo__index(Parameter<Int>)
 
         static func compareParameters(lhs: MethodType, rhs: MethodType, matcher: Matcher) -> Bool {
             switch (lhs, rhs) {
             case (.m_viewDidLoad, .m_viewDidLoad):
                 return true 
-            case (.m_didSelectVideo__index(let lhsIndex), .m_didSelectVideo__index(let rhsIndex)):
+            case (.m_didSelectImage__index(let lhsIndex), .m_didSelectImage__index(let rhsIndex)):
                 guard Parameter.compare(lhs: lhsIndex, rhs: rhsIndex, with: matcher) else { return false } 
                 return true 
-            case (.m_didSelectImage__index(let lhsIndex), .m_didSelectImage__index(let rhsIndex)):
+            case (.m_didSelectVideo__index(let lhsIndex), .m_didSelectVideo__index(let rhsIndex)):
                 guard Parameter.compare(lhs: lhsIndex, rhs: rhsIndex, with: matcher) else { return false } 
                 return true 
             default: return false
@@ -443,8 +443,8 @@ open class GameDetailPresenterProtocolMock: GameDetailPresenterProtocol, Mock {
         func intValue() -> Int {
             switch self {
             case .m_viewDidLoad: return 0
-            case let .m_didSelectVideo__index(p0): return p0.intValue
             case let .m_didSelectImage__index(p0): return p0.intValue
+            case let .m_didSelectVideo__index(p0): return p0.intValue
             }
         }
     }
@@ -464,8 +464,8 @@ open class GameDetailPresenterProtocolMock: GameDetailPresenterProtocol, Mock {
         fileprivate var method: MethodType
 
         public static func viewDidLoad() -> Verify { return Verify(method: .m_viewDidLoad)}
-        public static func didSelectVideo(_ index: Parameter<Int>) -> Verify { return Verify(method: .m_didSelectVideo__index(`index`))}
         public static func didSelectImage(_ index: Parameter<Int>) -> Verify { return Verify(method: .m_didSelectImage__index(`index`))}
+        public static func didSelectVideo(_ index: Parameter<Int>) -> Verify { return Verify(method: .m_didSelectVideo__index(`index`))}
     }
 
     public struct Perform {
@@ -475,11 +475,11 @@ open class GameDetailPresenterProtocolMock: GameDetailPresenterProtocol, Mock {
         public static func viewDidLoad(perform: @escaping () -> Void) -> Perform {
             return Perform(method: .m_viewDidLoad, performs: perform)
         }
-        public static func didSelectVideo(_ index: Parameter<Int>, perform: @escaping (Int) -> Void) -> Perform {
-            return Perform(method: .m_didSelectVideo__index(`index`), performs: perform)
-        }
         public static func didSelectImage(_ index: Parameter<Int>, perform: @escaping (Int) -> Void) -> Perform {
             return Perform(method: .m_didSelectImage__index(`index`), performs: perform)
+        }
+        public static func didSelectVideo(_ index: Parameter<Int>, perform: @escaping (Int) -> Void) -> Perform {
+            return Perform(method: .m_didSelectVideo__index(`index`), performs: perform)
         }
     }
 

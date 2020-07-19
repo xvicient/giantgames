@@ -15,7 +15,7 @@ final class GameDetailPresenter {
     private let locales: GameDetailLocales
     private let game: Game
     private var images = [GameImage]()
-    private var videoURLs = [URL]()
+    private var videos = [GameVideo]()
     
     init(view: GameDetailViewProtocol,
          interactor: GameDetailInteractorProtocol,
@@ -46,7 +46,8 @@ extension GameDetailPresenter: GameDetailPresenterProtocol {
     }
 
     func didSelectVideo(_ index: Int) {
-        router.playVideo(videoURLs[index])
+        guard let url = videos[index].url(.embed) else { return }
+        router.playVideo(url)
     }
 }
 
@@ -84,10 +85,10 @@ private extension GameDetailPresenter {
 
     func showVideos() {
         guard let videoIds = game.videos, !videoIds.isEmpty else { return }
-        interactor.videoURLs(videoIds) { [weak self] urls in
+        interactor.gameVideos(videoIds) { [weak self] videos in
             guard let self = self else { return }
-            self.videoURLs = urls
-            self.view.render(state: .showVideos(urls))
+            self.videos = videos
+            self.view.render(state: .showVideos(videos.compactMap { $0.url(.embed) }))
         }
     }
 }

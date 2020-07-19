@@ -14,6 +14,8 @@
 		C76B01B924BFA8EA006D974B /* GameDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76B01B824BFA8EA006D974B /* GameDetailTests.swift */; };
 		C76B01BB24BFAE67006D974B /* GameImageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76B01BA24BFAE67006D974B /* GameImageMock.swift */; };
 		C76B01BD24C0377E006D974B /* DependenciesRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76B01BC24C0377E006D974B /* DependenciesRegistration.swift */; };
+		C76B01BF24C4B2B2006D974B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C76B01BE24C4B2B2006D974B /* WebKit.framework */; };
+		C76B01C124C4B478006D974B /* GameVideoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76B01C024C4B478006D974B /* GameVideoMock.swift */; };
 		C7901CFB24BE4DB800692F2F /* GameDetailMediaCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7901CFA24BE4DB800692F2F /* GameDetailMediaCollectionView.swift */; };
 		C7901CFE24BE4EF600692F2F /* GameDetailImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7901CFD24BE4EF600692F2F /* GameDetailImageCollectionViewCell.swift */; };
 		C7901D0024BE4EFE00692F2F /* GameDetailImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7901CFF24BE4EFE00692F2F /* GameDetailImageCollectionViewCell.xib */; };
@@ -96,6 +98,8 @@
 		C76B01B824BFA8EA006D974B /* GameDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailTests.swift; sourceTree = "<group>"; };
 		C76B01BA24BFAE67006D974B /* GameImageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameImageMock.swift; sourceTree = "<group>"; };
 		C76B01BC24C0377E006D974B /* DependenciesRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependenciesRegistration.swift; sourceTree = "<group>"; };
+		C76B01BE24C4B2B2006D974B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		C76B01C024C4B478006D974B /* GameVideoMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVideoMock.swift; sourceTree = "<group>"; };
 		C7901CFA24BE4DB800692F2F /* GameDetailMediaCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailMediaCollectionView.swift; sourceTree = "<group>"; };
 		C7901CFD24BE4EF600692F2F /* GameDetailImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		C7901CFF24BE4EFE00692F2F /* GameDetailImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameDetailImageCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C76B01BF24C4B2B2006D974B /* WebKit.framework in Frameworks */,
 				E97CEB636B62F2B46D9DF006 /* Pods_GiantGames.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,6 +504,7 @@
 			children = (
 				C7B5150A24BC3DC4003760E1 /* GameMock.swift */,
 				C76B01BA24BFAE67006D974B /* GameImageMock.swift */,
+				C76B01C024C4B478006D974B /* GameVideoMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -517,6 +523,7 @@
 		EC3E7C72F96C49D77B294909 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C76B01BE24C4B2B2006D974B /* WebKit.framework */,
 				B3E5E80E6D14A5577E733EDC /* Pods_GiantGames.framework */,
 				7E94386C80C06011F2350431 /* Pods_GiantGamesTests.framework */,
 			);
@@ -794,6 +801,7 @@
 				C76B01BB24BFAE67006D974B /* GameImageMock.swift in Sources */,
 				C7B5150B24BC3DC4003760E1 /* GameMock.swift in Sources */,
 				C7B5150524BBB46D003760E1 /* HomeTests.swift in Sources */,
+				C76B01C124C4B478006D974B /* GameVideoMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

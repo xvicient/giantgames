@@ -46,11 +46,7 @@ class GameDetailPresenterTests: XCTestCase {
     private let game = GameMock.game
     private let coverURLMock = URL(string: "https://www.google.com/")!
     private let gameImages = GameImageMock.gameImages(5)
-    private let videoURLS = [URL(string: "https://youtu.be/OMyNNgSVgEY")!,
-                             URL(string: "https://youtu.be/OMyNNgSVgEY")!,
-                             URL(string: "https://youtu.be/OMyNNgSVgEY")!,
-                             URL(string: "https://youtu.be/OMyNNgSVgEY")!,
-                             URL(string: "https://youtu.be/OMyNNgSVgEY")!]
+    private let gameVideos = GameVideoMock.gameVideos(5)
 
     override func setUp() {
         super.setUp()
@@ -88,11 +84,11 @@ class GameDetailPresenterTests: XCTestCase {
     }
 
     func test_showVideos() {
-        mockVideos(videoURLS)
+        mockVideos(gameVideos)
         presenter.viewDidLoad()
 
-        Verify(interactorMock, 1, .videoURLs(.value(game.videos!), completion: .any))
-        Verify(viewMock, 1, .render(state: .value(.showVideos(videoURLS))))
+        Verify(interactorMock, 1, .gameVideos(.value(game.videos!), completion: .any))
+        Verify(viewMock, 1, .render(state: .value(.showVideos(gameVideos.compactMap { $0.url(.embed) }))))
 
     }
 
@@ -107,13 +103,13 @@ class GameDetailPresenterTests: XCTestCase {
     }
 
     func test_videoSelected() {
-        mockVideos(videoURLS)
+        mockVideos(gameVideos)
         presenter.viewDidLoad()
 
         let videoIndex = 0
         presenter.didSelectVideo(videoIndex)
 
-        Verify(routerMock, 1, .playVideo(.value(videoURLS[videoIndex])))
+        Verify(routerMock, 1, .playVideo(.value(gameVideos[videoIndex].url(.embed)!)))
     }
 }
 
@@ -142,11 +138,11 @@ private extension GameDetailPresenterTests {
         }))
     }
 
-    func mockVideos(_ result: [URL]) {
-        Perform(interactorMock, .videoURLs(.value(game.videos!),
-                                           completion: .any,
-                                           perform: { (_, completion) in
-                                            completion(result)
+    func mockVideos(_ result: [GameVideo]) {
+        Perform(interactorMock, .gameVideos(.value(game.videos!),
+                                            completion: .any,
+                                            perform: { (_, completion) in
+                                                completion(result)
         }))
     }
 }

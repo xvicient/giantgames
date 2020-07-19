@@ -7,5 +7,14 @@
 //
 
 import UIKit
+import WebKit
 
-class GameDetailVideoCollectionViewCell: UICollectionViewCell {}
+class GameDetailVideoCollectionViewCell: UICollectionViewCell {
+
+    @IBOutlet private var videoWebView: WKWebView!
+
+    func setup(_ url: URL) {
+        videoWebView.configuration.allowsInlineMediaPlayback = true
+        videoWebView.load(URLRequest(url: url))
+    }
+}

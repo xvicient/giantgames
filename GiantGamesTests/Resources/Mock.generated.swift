@@ -232,9 +232,9 @@ open class GameDetailInteractorProtocolMock: GameDetailInteractorProtocol, Mock 
 		perform?(`ids`, `completion`)
     }
 
-    open func videoURLs(_ ids: [Int], completion: @escaping ([URL]) -> Void) {
-        addInvocation(.m_videoURLs__idscompletion_completion(Parameter<[Int]>.value(`ids`), Parameter<([URL]) -> Void>.value(`completion`)))
-		let perform = methodPerformValue(.m_videoURLs__idscompletion_completion(Parameter<[Int]>.value(`ids`), Parameter<([URL]) -> Void>.value(`completion`))) as? ([Int], @escaping ([URL]) -> Void) -> Void
+    open func gameVideos(_ ids: [Int], completion: @escaping ([GameVideo]) -> Void) {
+        addInvocation(.m_gameVideos__idscompletion_completion(Parameter<[Int]>.value(`ids`), Parameter<([GameVideo]) -> Void>.value(`completion`)))
+		let perform = methodPerformValue(.m_gameVideos__idscompletion_completion(Parameter<[Int]>.value(`ids`), Parameter<([GameVideo]) -> Void>.value(`completion`))) as? ([Int], @escaping ([GameVideo]) -> Void) -> Void
 		perform?(`ids`, `completion`)
     }
 
@@ -242,7 +242,7 @@ open class GameDetailInteractorProtocolMock: GameDetailInteractorProtocol, Mock 
     fileprivate enum MethodType {
         case m_coverURL__idcompletion_completion(Parameter<Int>, Parameter<(Result<URL?, APIError>) -> Void>)
         case m_gameImages__idscompletion_completion(Parameter<[Int]>, Parameter<([GameImage]) -> Void>)
-        case m_videoURLs__idscompletion_completion(Parameter<[Int]>, Parameter<([URL]) -> Void>)
+        case m_gameVideos__idscompletion_completion(Parameter<[Int]>, Parameter<([GameVideo]) -> Void>)
 
         static func compareParameters(lhs: MethodType, rhs: MethodType, matcher: Matcher) -> Bool {
             switch (lhs, rhs) {
@@ -254,7 +254,7 @@ open class GameDetailInteractorProtocolMock: GameDetailInteractorProtocol, Mock 
                 guard Parameter.compare(lhs: lhsIds, rhs: rhsIds, with: matcher) else { return false } 
                 guard Parameter.compare(lhs: lhsCompletion, rhs: rhsCompletion, with: matcher) else { return false } 
                 return true 
-            case (.m_videoURLs__idscompletion_completion(let lhsIds, let lhsCompletion), .m_videoURLs__idscompletion_completion(let rhsIds, let rhsCompletion)):
+            case (.m_gameVideos__idscompletion_completion(let lhsIds, let lhsCompletion), .m_gameVideos__idscompletion_completion(let rhsIds, let rhsCompletion)):
                 guard Parameter.compare(lhs: lhsIds, rhs: rhsIds, with: matcher) else { return false } 
                 guard Parameter.compare(lhs: lhsCompletion, rhs: rhsCompletion, with: matcher) else { return false } 
                 return true 
@@ -266,7 +266,7 @@ open class GameDetailInteractorProtocolMock: GameDetailInteractorProtocol, Mock 
             switch self {
             case let .m_coverURL__idcompletion_completion(p0, p1): return p0.intValue + p1.intValue
             case let .m_gameImages__idscompletion_completion(p0, p1): return p0.intValue + p1.intValue
-            case let .m_videoURLs__idscompletion_completion(p0, p1): return p0.intValue + p1.intValue
+            case let .m_gameVideos__idscompletion_completion(p0, p1): return p0.intValue + p1.intValue
             }
         }
     }
@@ -287,7 +287,7 @@ open class GameDetailInteractorProtocolMock: GameDetailInteractorProtocol, Mock 
 
         public static func coverURL(_ id: Parameter<Int>, completion: Parameter<(Result<URL?, APIError>) -> Void>) -> Verify { return Verify(method: .m_coverURL__idcompletion_completion(`id`, `completion`))}
         public static func gameImages(_ ids: Parameter<[Int]>, completion: Parameter<([GameImage]) -> Void>) -> Verify { return Verify(method: .m_gameImages__idscompletion_completion(`ids`, `completion`))}
-        public static func videoURLs(_ ids: Parameter<[Int]>, completion: Parameter<([URL]) -> Void>) -> Verify { return Verify(method: .m_videoURLs__idscompletion_completion(`ids`, `completion`))}
+        public static func gameVideos(_ ids: Parameter<[Int]>, completion: Parameter<([GameVideo]) -> Void>) -> Verify { return Verify(method: .m_gameVideos__idscompletion_completion(`ids`, `completion`))}
     }
 
     public struct Perform {
@@ -300,8 +300,8 @@ open class GameDetailInteractorProtocolMock: GameDetailInteractorProtocol, Mock 
         public static func gameImages(_ ids: Parameter<[Int]>, completion: Parameter<([GameImage]) -> Void>, perform: @escaping ([Int], @escaping ([GameImage]) -> Void) -> Void) -> Perform {
             return Perform(method: .m_gameImages__idscompletion_completion(`ids`, `completion`), performs: perform)
         }
-        public static func videoURLs(_ ids: Parameter<[Int]>, completion: Parameter<([URL]) -> Void>, perform: @escaping ([Int], @escaping ([URL]) -> Void) -> Void) -> Perform {
-            return Perform(method: .m_videoURLs__idscompletion_completion(`ids`, `completion`), performs: perform)
+        public static func gameVideos(_ ids: Parameter<[Int]>, completion: Parameter<([GameVideo]) -> Void>, perform: @escaping ([Int], @escaping ([GameVideo]) -> Void) -> Void) -> Perform {
+            return Perform(method: .m_gameVideos__idscompletion_completion(`ids`, `completion`), performs: perform)
         }
     }
 

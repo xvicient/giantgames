@@ -23,6 +23,7 @@ class GameDetailMediaCollectionView: UICollectionView {
     var type: GameDetailMediaCollectionType?
     var urls = [URL]() {
         didSet {
+            guard type != nil else { fatalError("GameDetailMediaCollectionType not setted") }
             reloadData()
         }
     }
@@ -59,6 +60,7 @@ extension GameDetailMediaCollectionView: UICollectionViewDelegate, UICollectionV
             return cell
         case .video:
             let cell: GameDetailVideoCollectionViewCell = collectionView.dequeue(for: indexPath)
+            cell.setup(urls[indexPath.row])
             return cell
         }
     }

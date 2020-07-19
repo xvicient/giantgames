@@ -37,7 +37,7 @@ protocol GameDetailPresenterProtocol {
 protocol GameDetailInteractorProtocol {
     func coverURL(_ id: Int, completion: @escaping (Result<URL?, APIError>) -> Void)
     func gameImages(_ ids: [Int], completion: @escaping ([GameImage]) -> Void)
-    func videoURLs(_ ids: [Int], completion: @escaping ([URL]) -> Void)
+    func gameVideos(_ ids: [Int], completion: @escaping ([GameVideo]) -> Void)
 }
 
 // MARK: - View

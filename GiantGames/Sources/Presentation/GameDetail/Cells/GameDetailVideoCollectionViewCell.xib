@@ -23,13 +23,29 @@
                             <constraint firstAttribute="width" constant="64" id="lZM-AF-CCq"/>
                         </constraints>
                     </imageView>
+                    <wkWebView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KI6-Ar-BL2">
+                        <rect key="frame" x="0.0" y="0.0" width="287" height="193"/>
+                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <wkWebViewConfiguration key="configuration" allowsAirPlayForMediaPlayback="NO" allowsInlineMediaPlayback="YES" allowsPictureInPictureMediaPlayback="NO">
+                            <dataDetectorTypes key="dataDetectorTypes"/>
+                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                            <wkPreferences key="preferences"/>
+                        </wkWebViewConfiguration>
+                    </wkWebView>
                 </subviews>
                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="KI6-Ar-BL2" secondAttribute="trailing" id="HY7-m8-Z0M"/>
+                    <constraint firstItem="KI6-Ar-BL2" firstAttribute="leading" secondItem="LPP-r6-EsP" secondAttribute="leading" id="Kdr-dY-41M"/>
+                    <constraint firstAttribute="bottom" secondItem="KI6-Ar-BL2" secondAttribute="bottom" id="Lyq-Er-nsq"/>
                     <constraint firstItem="H2J-hy-8cD" firstAttribute="centerX" secondItem="LPP-r6-EsP" secondAttribute="centerX" id="jTL-gR-nZm"/>
                     <constraint firstItem="H2J-hy-8cD" firstAttribute="centerY" secondItem="LPP-r6-EsP" secondAttribute="centerY" id="qdB-rX-0sE"/>
+                    <constraint firstItem="KI6-Ar-BL2" firstAttribute="top" secondItem="LPP-r6-EsP" secondAttribute="top" id="qxD-25-wEv"/>
                 </constraints>
             </collectionViewCellContentView>
+            <connections>
+                <outlet property="videoWebView" destination="KI6-Ar-BL2" id="Z3N-uk-8s1"/>
+            </connections>
             <point key="canvasLocation" x="-141" y="49"/>
         </collectionViewCell>
     </objects>

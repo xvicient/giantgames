@@ -22,7 +22,7 @@ final class GameDetailRouter {
 extension GameDetailRouter: GameDetailRouterProtocol {
     func playVideo(_ url: URL) {
         let safari = SFSafariViewController(url: url)
-        safari.modalPresentationStyle = .popover
+        safari.modalPresentationStyle = .overFullScreen
         viewController.present(safari, animated: true)
     }
 }

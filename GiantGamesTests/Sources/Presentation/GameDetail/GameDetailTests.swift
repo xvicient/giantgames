@@ -26,6 +26,21 @@ class GameDetailViewTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
     }
+
+    func test_viewLoaded() {
+        view.viewDidLoad()
+        Verify(presenterMock, 1, .viewDidLoad())
+    }
+
+    func test_imageSelected() {
+        view.didSelectImage(0)
+        Verify(presenterMock, 1, .didSelectImage(.value(0)))
+    }
+
+    func test_videoSelected() {
+        view.didSelectVideo(0)
+        Verify(presenterMock, 1, .didSelectVideo(.value(0)))
+    }
 }
 
 private extension GameDetailViewTests {
@@ -162,6 +177,24 @@ class GameDetailInteractorTests: XCTestCase {
 
     override func tearDown() {
         super.tearDown()
+    }
+
+    func test_coverURLRequested() {
+        let coverId = GameMock.game.cover
+        interactor.coverURL(coverId, completion: { _ in })
+        Verify(gameImageServiceApiMock, 1, .covers(.value(coverId), completion: .any))
+    }
+
+    func test_gameImagesRequested() {
+        let gameImagesIds = GameMock.game.screenshots!
+        interactor.gameImages(gameImagesIds, completion: { _ in })
+        gameImagesIds.forEach { Verify(gameImageServiceApiMock, 1, .screenshots(.value($0), completion: .any)) }
+    }
+
+    func test_gameVideosRequested() {
+        let gameVideosIds = GameMock.game.videos!
+        interactor.gameVideos(gameVideosIds, completion: { _ in })
+        gameVideosIds.forEach { Verify(gamevideoServiceApiMock, 1, .videos(.value($0), completion: .any)) }
     }
 }
 

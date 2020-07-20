@@ -6,6 +6,8 @@
 //  Copyright © 2020 GiantGames. All rights reserved.
 //
 
+import Foundation
+
 struct GameCodable: Codable, Domain {
     let id: Int
     let name: String
@@ -15,6 +17,7 @@ struct GameCodable: Codable, Domain {
     let videos: [Int]?
     let rating: Double?
     let summary: String?
+    let firstReleaseDate: Double
 
     func toDomain() -> Game {
         Game(id: id,
@@ -24,6 +27,7 @@ struct GameCodable: Codable, Domain {
              screenshots: screenshots,
              videos: videos,
              rating: rating == nil ? "N/A" : String(rating!.rounded(1)),
-             summary: summary.orEmpty)
+             summary: summary.orEmpty,
+             releaseDate: Date(timeIntervalSince1970: firstReleaseDate))
     }
 }

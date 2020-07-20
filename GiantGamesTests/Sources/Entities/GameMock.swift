@@ -6,6 +6,8 @@
 //  Copyright © 2020 GiantGames. All rights reserved.
 //
 
+import Foundation
+
 @testable import GiantGames
 
 struct GameMock {
@@ -17,7 +19,8 @@ struct GameMock {
              screenshots: [1, 2, 3, 4, 5],
              videos: [1, 2, 3, 4, 5],
              rating: "Rating",
-             summary: "Summary")
+             summary: "Summary",
+             releaseDate: Date())
     }
 
     static func games(_ count: Int) -> [Game] {
@@ -30,7 +33,8 @@ struct GameMock {
                               screenshots: [1, 2, 3, 4, 5],
                               videos: [1, 2, 3, 4, 5],
                               rating: "Rating\(index)",
-                              summary: "Summary\(index)"))
+                              summary: "Summary\(index)",
+                              releaseDate: Date()))
         }
         return games
     }

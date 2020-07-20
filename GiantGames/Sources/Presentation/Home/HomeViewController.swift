@@ -15,14 +15,16 @@ struct HomeViewData: Equatable {
 struct HomeViewItem: Equatable {
     let nameText: String
     let summaryText: String
-    let ratingText: String
     let ratingTitle: String
+    let ratingText: String
+    let releasedTitle: String
+    let releaseDate: String
 }
 
 struct HomeViewLoadingData: Equatable {
     let position: Position
     let on: Bool
-    
+
     enum Position: Equatable {
         case top
         case middle

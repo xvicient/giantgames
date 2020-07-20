@@ -78,6 +78,7 @@
 		C7C62B5624C5EBFA00D2C2F7 /* Double+Rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C62B5524C5EBFA00D2C2F7 /* Double+Rounded.swift */; };
 		C7C62B5824C5F18400D2C2F7 /* Optional+GG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C62B5724C5F18400D2C2F7 /* Optional+GG.swift */; };
 		C7C62B5A24C5F6F600D2C2F7 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C62B5924C5F6F600D2C2F7 /* UIView+Shadow.swift */; };
+		C7C62B5C24C6171C00D2C2F7 /* DateFormatter+Formats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C62B5B24C6171C00D2C2F7 /* DateFormatter+Formats.swift */; };
 		E97CEB636B62F2B46D9DF006 /* Pods_GiantGames.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3E5E80E6D14A5577E733EDC /* Pods_GiantGames.framework */; };
 /* End PBXBuildFile section */
 
@@ -175,6 +176,7 @@
 		C7C62B5524C5EBFA00D2C2F7 /* Double+Rounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Rounded.swift"; sourceTree = "<group>"; };
 		C7C62B5724C5F18400D2C2F7 /* Optional+GG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+GG.swift"; sourceTree = "<group>"; };
 		C7C62B5924C5F6F600D2C2F7 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
+		C7C62B5B24C6171C00D2C2F7 /* DateFormatter+Formats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Formats.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -449,6 +451,7 @@
 		C7B514BF24BB860D003760E1 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				C7C62B5B24C6171C00D2C2F7 /* DateFormatter+Formats.swift */,
 				C7C62B5524C5EBFA00D2C2F7 /* Double+Rounded.swift */,
 				C7C62B5724C5F18400D2C2F7 /* Optional+GG.swift */,
 				C7B514C824BB8898003760E1 /* String+Class.swift */,
@@ -769,6 +772,7 @@
 				C7B514C224BB8629003760E1 /* UITableView+GG.swift in Sources */,
 				C7B514A424BB71A7003760E1 /* ApiClient.swift in Sources */,
 				C79A54BE24BE009200AC0C46 /* UIImageView+URL.swift in Sources */,
+				C7C62B5C24C6171C00D2C2F7 /* DateFormatter+Formats.swift in Sources */,
 				C79A54BC24BDF9B200AC0C46 /* GameImageService.swift in Sources */,
 				C7B514BE24BB7DB5003760E1 /* GameService.swift in Sources */,
 				C7BD3C3124BF164F00E24DAC /* GameVideoCodable.swift in Sources */,

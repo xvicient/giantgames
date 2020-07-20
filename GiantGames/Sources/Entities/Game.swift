@@ -6,6 +6,8 @@
 //  Copyright © 2020 GiantGames. All rights reserved.
 //
 
+import Foundation
+
 struct Game: Equatable {
     let id: Int
     let name: String
@@ -15,4 +17,5 @@ struct Game: Equatable {
     let videos: [Int]?
     let rating: String
     let summary: String
+    let releaseDate: Date
 }

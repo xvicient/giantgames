@@ -26,8 +26,10 @@ class GameCell: UITableViewCell {
     }
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var summaryLabel: UILabel!
-    @IBOutlet private var ratingLabel: UILabel!
     @IBOutlet private var ratingTitleLabel: UILabel!
+    @IBOutlet private var ratingLabel: UILabel!
+    @IBOutlet private var releaseDateTitleLabel: UILabel!
+    @IBOutlet private var releaseDate: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,7 +39,9 @@ class GameCell: UITableViewCell {
     func setup(_ item: HomeViewItem) {
         nameLabel.text = item.nameText
         summaryLabel.text = item.summaryText
-        ratingLabel.text = item.ratingText
         ratingTitleLabel.text = item.ratingTitle
+        ratingLabel.text = item.ratingText
+        releaseDateTitleLabel.text = item.releasedTitle
+        releaseDate.text = item.releaseDate
     }
 }

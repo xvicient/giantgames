@@ -82,8 +82,10 @@ class HomePresenterTests: XCTestCase {
 
         let items = gamesMock.map { HomeViewItem(nameText: $0.name,
                                                  summaryText: $0.summary,
+                                                 ratingTitle: locales.scoreTitle.uppercased(),
                                                  ratingText: $0.rating,
-                                                 ratingTitle: locales.scoreTitle.uppercased())}
+                                                 releasedTitle: locales.releasedTitle.uppercased(),
+                                                 releaseDate: DateFormatter.ddMMyyyy.string(from: $0.releaseDate)) }
 
         Verify(viewMock, 1, .render(state: .value(.showLoading(HomeViewLoadingData(position: .middle, on: true)))))
         Verify(interactorMock, 1, .topGames(offset: .value("0"), completion: .any))

@@ -11,7 +11,7 @@ extension Endpoint {
         Endpoint(path: "games/",
                  method: .get,
                  headers: nil,
-                 queryParams: ["fields": "name,cover,storyline,screenshots,videos,rating,summary",
+                 queryParams: ["fields": "name,cover,storyline,screenshots,videos,rating,summary,first_release_date",
                                "order": "rating:desc",
                                "filter[rating][gte]": "0",
                                "limit": "10",

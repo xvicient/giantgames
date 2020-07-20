@@ -41,6 +41,11 @@ final class GameDetailViewController: UIViewController {
     @IBOutlet private var imagesTitleLabel: UILabel!
     @IBOutlet private var videosTitleLabel: UILabel!
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        onViewWillAppear()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
@@ -70,6 +75,10 @@ extension GameDetailViewController: GameDetailViewProtocol {
 // MARK: - Private
 
 private extension GameDetailViewController {
+    func onViewWillAppear() {
+        view.addGradient([.yellow, .purple])
+    }
+    
     func onViewDidLoad() {
         navigationController?.setNavigationBarHidden(false, animated: false)
     }

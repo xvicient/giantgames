@@ -74,8 +74,10 @@ private extension HomePresenter {
                 self.currentPage += 1
                 let items = games.map { HomeViewItem(nameText: $0.name,
                                                      summaryText: $0.summary,
+                                                     ratingTitle: self.locales.scoreTitle.uppercased(),
                                                      ratingText: $0.rating,
-                                                     ratingTitle: self.locales.scoreTitle.uppercased())}
+                                                     releasedTitle: self.locales.releasedTitle.uppercased(),
+                                                     releaseDate: DateFormatter.ddMMyyyy.string(from: $0.releaseDate))}
                 self.view.render(state: .showItems(items))
             case .failure:
                 self.router.show(self.locales.genericErrorMessage, okTitle: self.locales.alertOkTitle)

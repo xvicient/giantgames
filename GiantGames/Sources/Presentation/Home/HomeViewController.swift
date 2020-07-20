@@ -12,15 +12,22 @@ struct HomeViewData: Equatable {
     let viewTitle: String
 }
 
-struct HomeViewLoadingData: Equatable {
-    let position: HomeViewLoadingPosition
-    let on: Bool
+struct HomeViewItem: Equatable {
+    let nameText: String
+    let summaryText: String
+    let ratingText: String
+    let ratingTitle: String
 }
 
-enum HomeViewLoadingPosition: Equatable {
-    case top
-    case middle
-    case bottom
+struct HomeViewLoadingData: Equatable {
+    let position: Position
+    let on: Bool
+    
+    enum Position: Equatable {
+        case top
+        case middle
+        case bottom
+    }
 }
 
 final class HomeViewController: UIViewController {
@@ -30,26 +37,33 @@ final class HomeViewController: UIViewController {
             tableView.registerCells(GameCell.self)
 
             let refreshControl = UIRefreshControl()
+            refreshControl.tintColor = .white
             refreshControl.addTarget(self, action: #selector(didRefresh), for: .valueChanged)
             tableView.refreshControl = refreshControl
             
             let bottomLoading = UIActivityIndicatorView(style: .medium)
+            bottomLoading.color = .white
             bottomLoading.frame = CGRect(x: 0.0, y: 0.0, width: tableView.bounds.width, height: 44.0)
             tableView.tableFooterView = bottomLoading
         }
     }
     @IBOutlet private var activityIndicator: UIActivityIndicatorView!
     private var paginationThreshold: Int!
-    private var games = [Game]() {
+    private var items = [HomeViewItem]() {
         didSet {
             tableView.reloadData()
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        onViewWillAppear()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        overrideUserInterfaceStyle = .light 
         presenter.viewDidLoad()
+        onViewDidLoad()
     }
 }
 
@@ -60,8 +74,8 @@ extension HomeViewController: HomeViewProtocol {
         switch state {
         case let .showView(data):
             showView(data)
-        case let .showGames(games):
-            showGames(games)
+        case let .showItems(items):
+            showItems(items)
         case let .showLoading(loading):
             showLoading(loading)
         }
@@ -71,12 +85,25 @@ extension HomeViewController: HomeViewProtocol {
 // MARK: - Private
 
 private extension HomeViewController {
+    func onViewWillAppear() {
+        view.addGradient([.yellow, .purple])
+    }
+
+    func onViewDidLoad() {
+        overrideUserInterfaceStyle = .light
+        navigationController?.hidesBarsOnSwipe = true
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.view.backgroundColor = .clear
+    }
+
     func showView(_ data: HomeViewData) {
         title = data.viewTitle
     }
 
-    func showGames(_ games: [Game]) {
-        self.games.append(contentsOf: games)
+    func showItems(_ items: [HomeViewItem]) {
+        self.items.append(contentsOf: items)
     }
 
     func showLoading(_ loading: HomeViewLoadingData) {
@@ -102,12 +129,12 @@ private extension HomeViewController {
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        games.count
+        items.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: GameCell = tableView.dequeue(for: indexPath)
-        cell.setup(nameText: games[indexPath.row].name)
+        cell.setup(items[indexPath.row])
         return cell
     }
 

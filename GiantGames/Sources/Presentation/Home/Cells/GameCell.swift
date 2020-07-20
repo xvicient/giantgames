@@ -9,14 +9,35 @@
 import UIKit
 
 class GameCell: UITableViewCell {
+    @IBOutlet private var containerView: UIView! {
+        didSet {
+            containerView.addShadow(color: .darkGray)
+        }
+    }
+    @IBOutlet weak var leftView: UIView! {
+        didSet {
+            leftView.roundCorners([.layerMinXMinYCorner, .layerMinXMaxYCorner], radius: 12.0)
+        }
+    }
+    @IBOutlet weak var rightView: UIView! {
+        didSet {
+            rightView.roundCorners([.layerMaxXMinYCorner, .layerMaxXMaxYCorner], radius: 12.0)
+        }
+    }
     @IBOutlet private var nameLabel: UILabel!
+    @IBOutlet private var summaryLabel: UILabel!
+    @IBOutlet private var ratingLabel: UILabel!
+    @IBOutlet private var ratingTitleLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
     }
 
-    func setup(nameText: String) {
-        nameLabel.text = nameText
+    func setup(_ item: HomeViewItem) {
+        nameLabel.text = item.nameText
+        summaryLabel.text = item.summaryText
+        ratingLabel.text = item.ratingText
+        ratingTitleLabel.text = item.ratingTitle
     }
 }

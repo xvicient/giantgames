@@ -86,7 +86,7 @@ class GameDetailPresenterTests: XCTestCase {
         mockCover(.success(coverURLMock))
         presenter.viewDidLoad()
 
-        Verify(interactorMock, 1, .coverURL(.value(game.cover), completion: .any))
+        Verify(interactorMock, 1, .coverURL(.value(game.cover!), completion: .any))
         Verify(viewMock, 1, .render(state: .value(.showCover(coverURLMock))))
     }
 
@@ -138,7 +138,7 @@ private extension GameDetailPresenterTests {
     }
 
     func mockCover(_ result: Result<URL?, APIError>) {
-        Perform(interactorMock, .coverURL(.value(game.cover),
+        Perform(interactorMock, .coverURL(.value(game.cover!),
                                           completion: .any,
                                           perform: { (_, completion) in
                                             completion(result)
@@ -180,7 +180,7 @@ class GameDetailInteractorTests: XCTestCase {
     }
 
     func test_coverURLRequested() {
-        let coverId = GameMock.game.cover
+        let coverId = GameMock.game.cover!
         interactor.coverURL(coverId, completion: { _ in })
         Verify(gameImageServiceApiMock, 1, .covers(.value(coverId), completion: .any))
     }

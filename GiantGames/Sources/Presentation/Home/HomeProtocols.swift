@@ -44,7 +44,7 @@ protocol HomeInteractorProtocol {
 
 enum HomeViewState: Equatable {
     case showView(_ data: HomeViewData)
-    case showGames(_ games: [Game])
+    case showItems(_ games: [HomeViewItem])
     case showLoading(_ loading: HomeViewLoadingData)
 }
 

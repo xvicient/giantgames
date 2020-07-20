@@ -72,6 +72,12 @@
 		C7BD3C2D24BF15E400E24DAC /* GameVideoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD3C2C24BF15E400E24DAC /* GameVideoService.swift */; };
 		C7BD3C2F24BF162800E24DAC /* GameVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD3C2E24BF162800E24DAC /* GameVideo.swift */; };
 		C7BD3C3124BF164F00E24DAC /* GameVideoCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BD3C3024BF164F00E24DAC /* GameVideoCodable.swift */; };
+		C7C62B4924C5B3A300D2C2F7 /* UIView+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C62B4824C5B3A300D2C2F7 /* UIView+Gradient.swift */; };
+		C7C62B5224C5B95F00D2C2F7 /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C62B5124C5B95F00D2C2F7 /* UIColor+Colors.swift */; };
+		C7C62B5424C5B97D00D2C2F7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7C62B5324C5B97D00D2C2F7 /* Colors.xcassets */; };
+		C7C62B5624C5EBFA00D2C2F7 /* Double+Rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C62B5524C5EBFA00D2C2F7 /* Double+Rounded.swift */; };
+		C7C62B5824C5F18400D2C2F7 /* Optional+GG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C62B5724C5F18400D2C2F7 /* Optional+GG.swift */; };
+		C7C62B5A24C5F6F600D2C2F7 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C62B5924C5F6F600D2C2F7 /* UIView+Shadow.swift */; };
 		E97CEB636B62F2B46D9DF006 /* Pods_GiantGames.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3E5E80E6D14A5577E733EDC /* Pods_GiantGames.framework */; };
 /* End PBXBuildFile section */
 
@@ -163,6 +169,12 @@
 		C7BD3C2C24BF15E400E24DAC /* GameVideoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVideoService.swift; sourceTree = "<group>"; };
 		C7BD3C2E24BF162800E24DAC /* GameVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVideo.swift; sourceTree = "<group>"; };
 		C7BD3C3024BF164F00E24DAC /* GameVideoCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVideoCodable.swift; sourceTree = "<group>"; };
+		C7C62B4824C5B3A300D2C2F7 /* UIView+Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Gradient.swift"; sourceTree = "<group>"; };
+		C7C62B5124C5B95F00D2C2F7 /* UIColor+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Colors.swift"; sourceTree = "<group>"; };
+		C7C62B5324C5B97D00D2C2F7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		C7C62B5524C5EBFA00D2C2F7 /* Double+Rounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Rounded.swift"; sourceTree = "<group>"; };
+		C7C62B5724C5F18400D2C2F7 /* Optional+GG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+GG.swift"; sourceTree = "<group>"; };
+		C7C62B5924C5F6F600D2C2F7 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,6 +307,7 @@
 			children = (
 				C7B514DA24BB92A7003760E1 /* Locales */,
 				C7B5147324BB68B9003760E1 /* Assets.xcassets */,
+				C7C62B5324C5B97D00D2C2F7 /* Colors.xcassets */,
 				C7B514D824BB9206003760E1 /* LaunchScreen.storyboard */,
 				C7B5147824BB68B9003760E1 /* Info.plist */,
 			);
@@ -436,6 +449,8 @@
 		C7B514BF24BB860D003760E1 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				C7C62B5524C5EBFA00D2C2F7 /* Double+Rounded.swift */,
+				C7C62B5724C5F18400D2C2F7 /* Optional+GG.swift */,
 				C7B514C824BB8898003760E1 /* String+Class.swift */,
 				C7B514CC24BB90A5003760E1 /* String+Localization.swift */,
 				C7B514AB24BB7324003760E1 /* URLRequest+cURLString.swift */,
@@ -447,9 +462,12 @@
 			isa = PBXGroup;
 			children = (
 				C7901D0124BE4FB000692F2F /* UICollectionView+GG.swift */,
+				C7C62B5124C5B95F00D2C2F7 /* UIColor+Colors.swift */,
 				C79A54BD24BE009200AC0C46 /* UIImageView+URL.swift */,
 				C7B514C124BB8629003760E1 /* UITableView+GG.swift */,
+				C7C62B4824C5B3A300D2C2F7 /* UIView+Gradient.swift */,
 				C79A54C124BE2F2500AC0C46 /* UIView+RoundCorners.swift */,
+				C7C62B5924C5F6F600D2C2F7 /* UIView+Shadow.swift */,
 				C7901D0524BE53F000692F2F /* UIWindow+TopViewController.swift */,
 			);
 			path = UIKit;
@@ -618,6 +636,7 @@
 			files = (
 				C7B5147424BB68B9003760E1 /* Assets.xcassets in Resources */,
 				C723722824BF3CE0008F9E6D /* GameDetailVideoCollectionViewCell.xib in Resources */,
+				C7C62B5424C5B97D00D2C2F7 /* Colors.xcassets in Resources */,
 				C79A54AF24BD060200AC0C46 /* GameDetailViewController.xib in Resources */,
 				C7B514D924BB9206003760E1 /* LaunchScreen.storyboard in Resources */,
 				C7B514A024BB6D6F003760E1 /* HomeViewController.xib in Resources */,
@@ -743,6 +762,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C79A54C224BE2F2500AC0C46 /* UIView+RoundCorners.swift in Sources */,
+				C7C62B5624C5EBFA00D2C2F7 /* Double+Rounded.swift in Sources */,
 				C7B5149C24BB6D6F003760E1 /* HomeViewController.swift in Sources */,
 				C7B5149A24BB6D6F003760E1 /* HomePresenter.swift in Sources */,
 				C7BD3C2F24BF162800E24DAC /* GameVideo.swift in Sources */,
@@ -753,6 +773,7 @@
 				C7B514BE24BB7DB5003760E1 /* GameService.swift in Sources */,
 				C7BD3C3124BF164F00E24DAC /* GameVideoCodable.swift in Sources */,
 				C7B514A824BB7291003760E1 /* APIClientLogger.swift in Sources */,
+				C7C62B5824C5F18400D2C2F7 /* Optional+GG.swift in Sources */,
 				C79A54AD24BD060200AC0C46 /* GameDetailBuilder.swift in Sources */,
 				C79A54BA24BDF97B00AC0C46 /* Endpoint+Cover.swift in Sources */,
 				C79A54AE24BD060200AC0C46 /* GameDetailInteractor.swift in Sources */,
@@ -768,14 +789,17 @@
 				C7B514CB24BB9058003760E1 /* HomeLocales.swift in Sources */,
 				C723722624BF3CD8008F9E6D /* GameDetailVideoCollectionViewCell.swift in Sources */,
 				C79A54AA24BD060200AC0C46 /* GameDetailRouter.swift in Sources */,
+				C7C62B5A24C5F6F600D2C2F7 /* UIView+Shadow.swift in Sources */,
 				C7BD3C2D24BF15E400E24DAC /* GameVideoService.swift in Sources */,
 				C7B5149E24BB6D6F003760E1 /* HomeBuilder.swift in Sources */,
 				C79A54C624BE382E00AC0C46 /* Endpoint+Screenshot.swift in Sources */,
 				C7BD3C2B24BF140300E24DAC /* Endpoint+GameVideos.swift in Sources */,
 				C7B5149024BB6BF2003760E1 /* DependencyInjection.swift in Sources */,
+				C7C62B5224C5B95F00D2C2F7 /* UIColor+Colors.swift in Sources */,
 				C7901CFE24BE4EF600692F2F /* GameDetailImageCollectionViewCell.swift in Sources */,
 				C7B514CD24BB90A5003760E1 /* String+Localization.swift in Sources */,
 				C7B5149D24BB6D6F003760E1 /* HomeProtocols.swift in Sources */,
+				C7C62B4924C5B3A300D2C2F7 /* UIView+Gradient.swift in Sources */,
 				C7B514AC24BB7324003760E1 /* URLRequest+cURLString.swift in Sources */,
 				C7B514C924BB8898003760E1 /* String+Class.swift in Sources */,
 				C7B514AE24BB735A003760E1 /* NoResult.swift in Sources */,

@@ -80,10 +80,15 @@ class HomePresenterTests: XCTestCase {
         mockGames(.success(gamesMock))
         presenter.viewDidLoad()
 
+        let items = gamesMock.map { HomeViewItem(nameText: $0.name,
+                                                 summaryText: $0.summary,
+                                                 ratingText: $0.rating,
+                                                 ratingTitle: locales.scoreTitle.uppercased())}
+
         Verify(viewMock, 1, .render(state: .value(.showLoading(HomeViewLoadingData(position: .middle, on: true)))))
         Verify(interactorMock, 1, .topGames(offset: .value("0"), completion: .any))
         Verify(viewMock, 1, .render(state: .value(.showLoading(HomeViewLoadingData(position: .middle, on: false)))))
-        Verify(viewMock, 1, .render(state: .value(.showGames(gamesMock))))
+        Verify(viewMock, 1, .render(state: .value(.showItems(items))))
     }
 
     func test_showGamesFailure() {
@@ -133,7 +138,7 @@ class HomePresenterTests: XCTestCase {
         Verify(viewMock, 1, .render(state: .value(.showLoading(HomeViewLoadingData(position: .top, on: true)))))
         Verify(interactorMock, 1, .topGames(offset: .value("0"), completion: .any))
         Verify(viewMock, 1, .render(state: .value(.showLoading(HomeViewLoadingData(position: .top, on: false)))))
-        Verify(viewMock, 1, .render(state: .value(.showGames([]))))
+        Verify(viewMock, 1, .render(state: .value(.showItems([]))))
     }
 }
 

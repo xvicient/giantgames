@@ -44,6 +44,7 @@ final class GameDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
+        onViewDidLoad()
     }
 }
 
@@ -69,6 +70,10 @@ extension GameDetailViewController: GameDetailViewProtocol {
 // MARK: - Private
 
 private extension GameDetailViewController {
+    func onViewDidLoad() {
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+
     func showView(_ data: GameDetailViewData) {
         ganeNameLabel.text = data.gameName
         gameStorylineLabel.text = data.gameStoryline

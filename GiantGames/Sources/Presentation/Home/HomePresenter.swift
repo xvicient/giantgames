@@ -61,7 +61,7 @@ private extension HomePresenter {
         view.render(state: .showView(HomeViewData(viewTitle: locales.topGamesTitle)))
     }
 
-    func showTopGames(_ position: HomeViewLoadingPosition) {
+    func showTopGames(_ position: HomeViewLoadingData.Position) {
         view.render(state: .showLoading(HomeViewLoadingData(position: position, on: true)))
         isFetching = true
         interactor.topGames(offset: String(pageOffset)) { [weak self] result in
@@ -72,7 +72,11 @@ private extension HomePresenter {
             case let .success(games):
                 self.games += games
                 self.currentPage += 1
-                self.view.render(state: .showGames(games))
+                let items = games.map { HomeViewItem(nameText: $0.name,
+                                                     summaryText: $0.summary,
+                                                     ratingText: $0.rating,
+                                                     ratingTitle: self.locales.scoreTitle.uppercased())}
+                self.view.render(state: .showItems(items))
             case .failure:
                 self.router.show(self.locales.genericErrorMessage, okTitle: self.locales.alertOkTitle)
             }

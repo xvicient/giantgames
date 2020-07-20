@@ -63,7 +63,8 @@ private extension GameDetailPresenter {
     }
 
     func showCover() {
-        interactor.coverURL(game.cover) { [weak self] result in
+        guard let coverId = game.cover else { return }
+        interactor.coverURL(coverId) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case let .success(coverURL):

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		58AE9457DA5D58EDCC086594 /* Pods_GiantGamesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E94386C80C06011F2350431 /* Pods_GiantGamesTests.framework */; };
+		319F757C3994EA50AD325C59 /* Pods_GiantGamesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD2A0CF65572191E76E201B /* Pods_GiantGamesTests.framework */; };
 		C723722624BF3CD8008F9E6D /* GameDetailVideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C723722524BF3CD8008F9E6D /* GameDetailVideoCollectionViewCell.swift */; };
 		C723722824BF3CE0008F9E6D /* GameDetailVideoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C723722724BF3CE0008F9E6D /* GameDetailVideoCollectionViewCell.xib */; };
 		C76B01B624BF4BA4006D974B /* GameDetailLocales.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76B01B524BF4BA4006D974B /* GameDetailLocales.swift */; };
@@ -86,9 +86,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1FD2A0CF65572191E76E201B /* Pods_GiantGamesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiantGamesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		216C57A5A88F4736C56CA58F /* Pods-GiantGamesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiantGamesTests.release.xcconfig"; path = "Target Support Files/Pods-GiantGamesTests/Pods-GiantGamesTests.release.xcconfig"; sourceTree = "<group>"; };
 		32053BDD4D1039C11657A045 /* Pods-GiantGamesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiantGamesTests.debug.xcconfig"; path = "Target Support Files/Pods-GiantGamesTests/Pods-GiantGamesTests.debug.xcconfig"; sourceTree = "<group>"; };
-		7E94386C80C06011F2350431 /* Pods_GiantGamesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiantGamesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A173B29BA73E030CE2F756E2 /* Pods-GiantGames.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiantGames.release.xcconfig"; path = "Target Support Files/Pods-GiantGames/Pods-GiantGames.release.xcconfig"; sourceTree = "<group>"; };
 		B3AF01CFB2F62076D175F474 /* Pods-GiantGames.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiantGames.debug.xcconfig"; path = "Target Support Files/Pods-GiantGames/Pods-GiantGames.debug.xcconfig"; sourceTree = "<group>"; };
 		B3E5E80E6D14A5577E733EDC /* Pods_GiantGames.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiantGames.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,7 +179,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58AE9457DA5D58EDCC086594 /* Pods_GiantGamesTests.framework in Frameworks */,
+				319F757C3994EA50AD325C59 /* Pods_GiantGamesTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,6 +192,16 @@
 				C76B01B824BFA8EA006D974B /* GameDetailTests.swift */,
 			);
 			path = GameDetail;
+			sourceTree = "<group>";
+		};
+		C76B01C324C4C2C4006D974B /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				C7B5150A24BC3DC4003760E1 /* GameMock.swift */,
+				C76B01BA24BFAE67006D974B /* GameImageMock.swift */,
+				C76B01C024C4B478006D974B /* GameVideoMock.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		C7901CF924BE4D8700692F2F /* Views */ = {
@@ -467,7 +477,7 @@
 		C7B514FE24BBB059003760E1 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				C7B5150924BC3DB0003760E1 /* Mocks */,
+				C76B01C324C4C2C4006D974B /* Entities */,
 				C7B514FF24BBB060003760E1 /* Presentation */,
 			);
 			path = Sources;
@@ -499,16 +509,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		C7B5150924BC3DB0003760E1 /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-				C7B5150A24BC3DC4003760E1 /* GameMock.swift */,
-				C76B01BA24BFAE67006D974B /* GameImageMock.swift */,
-				C76B01C024C4B478006D974B /* GameVideoMock.swift */,
-			);
-			path = Mocks;
-			sourceTree = "<group>";
-		};
 		D228ACB3DB33ADDF26888791 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -525,7 +525,7 @@
 			children = (
 				C76B01BE24C4B2B2006D974B /* WebKit.framework */,
 				B3E5E80E6D14A5577E733EDC /* Pods_GiantGames.framework */,
-				7E94386C80C06011F2350431 /* Pods_GiantGamesTests.framework */,
+				1FD2A0CF65572191E76E201B /* Pods_GiantGamesTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -561,7 +561,7 @@
 				C7B5147924BB68B9003760E1 /* Sources */,
 				C7B5147A24BB68B9003760E1 /* Frameworks */,
 				C7B5147B24BB68B9003760E1 /* Resources */,
-				04C8B88A8D0EC605E9953C96 /* [CP] Embed Pods Frameworks */,
+				68BAC5B0AC3B141B3452C2D1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -639,23 +639,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		04C8B88A8D0EC605E9953C96 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GiantGamesTests/Pods-GiantGamesTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GiantGamesTests/Pods-GiantGamesTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GiantGamesTests/Pods-GiantGamesTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		5247C6D9B4F66D2C066A2281 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -676,6 +659,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		68BAC5B0AC3B141B3452C2D1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GiantGamesTests/Pods-GiantGamesTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GiantGamesTests/Pods-GiantGamesTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GiantGamesTests/Pods-GiantGamesTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		77A6E4BC3B4298451495E912 /* [CP] Check Pods Manifest.lock */ = {
@@ -973,6 +973,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Nuke\"",
+					"-framework",
+					"\"Swinject\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.giantgames.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -992,6 +999,13 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Nuke\"",
+					"-framework",
+					"\"Swinject\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.giantgames.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";

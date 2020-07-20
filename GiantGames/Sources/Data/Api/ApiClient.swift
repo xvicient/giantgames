@@ -96,11 +96,11 @@ extension APIClient: APIClientApi {
 }
 
 private extension APIClient {
-    private static func mapToResult<T: Decodable>(_ jsonDecoder: JSONDecoder,
-                                                  _ data: Data?,
-                                                  _ response: URLResponse?,
-                                                  _ error: Error?,
-                                                  _ successfulStatusCodes: Range<Int>) -> Result<T, APIError> {
+    static func mapToResult<T: Decodable>(_ jsonDecoder: JSONDecoder,
+                                          _ data: Data?,
+                                          _ response: URLResponse?,
+                                          _ error: Error?,
+                                          _ successfulStatusCodes: Range<Int>) -> Result<T, APIError> {
         return Result {
             if let error = error {
                 throw APIError.other(error)

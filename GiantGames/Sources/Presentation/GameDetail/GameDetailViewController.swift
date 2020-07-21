@@ -29,6 +29,7 @@ final class GameDetailViewController: UIViewController {
         didSet {
             imageCollectionView.mediaDelegate = self
             imageCollectionView.type = .image
+            imageCollectionView.collectionViewLayout = collectionViewLayout
         }
     }
     @IBOutlet private var videosView: UIView!
@@ -36,6 +37,7 @@ final class GameDetailViewController: UIViewController {
         didSet {
             videoCollectionView.mediaDelegate = self
             videoCollectionView.type = .video
+            videoCollectionView.collectionViewLayout = collectionViewLayout
         }
     }
     @IBOutlet private var imagesTitleLabel: UILabel!
@@ -74,6 +76,26 @@ extension GameDetailViewController: GameDetailViewProtocol {
 // MARK: - Private
 
 private extension GameDetailViewController {
+    var collectionViewLayout: UICollectionViewLayout {
+        UICollectionViewCompositionalLayout(section: layoutSecion)
+    }
+
+    var layoutSecion: NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.90),
+                                               heightDimension: .fractionalHeight(1.0))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8)
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPaging
+
+        return section
+    }
+
     func onViewWillAppear() {
         view.addGradient([.yellow, .purple])
         navigationController?.hidesBarsOnSwipe = true

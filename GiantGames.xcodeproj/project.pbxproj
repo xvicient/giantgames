@@ -81,6 +81,7 @@
 		C7C62B5C24C6171C00D2C2F7 /* DateFormatter+Formats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C62B5B24C6171C00D2C2F7 /* DateFormatter+Formats.swift */; };
 		C7C62B6124C6443E00D2C2F7 /* GameServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C62B6024C6443E00D2C2F7 /* GameServiceTests.swift */; };
 		C7C62B6524C6D29D00D2C2F7 /* games.json in Resources */ = {isa = PBXBuildFile; fileRef = C7C62B6424C6D29D00D2C2F7 /* games.json */; };
+		C7C62B6824C6E0C900D2C2F7 /* ApiStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C62B6724C6E0C900D2C2F7 /* ApiStub.swift */; };
 		E97CEB636B62F2B46D9DF006 /* Pods_GiantGames.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3E5E80E6D14A5577E733EDC /* Pods_GiantGames.framework */; };
 /* End PBXBuildFile section */
 
@@ -181,6 +182,7 @@
 		C7C62B5B24C6171C00D2C2F7 /* DateFormatter+Formats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Formats.swift"; sourceTree = "<group>"; };
 		C7C62B6024C6443E00D2C2F7 /* GameServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameServiceTests.swift; sourceTree = "<group>"; };
 		C7C62B6424C6D29D00D2C2F7 /* games.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = games.json; sourceTree = "<group>"; };
+		C7C62B6724C6E0C900D2C2F7 /* ApiStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiStub.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -358,8 +360,8 @@
 		C7B514A124BB7188003760E1 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				C7B514AF24BB7561003760E1 /* Services */,
 				C7B514A224BB7197003760E1 /* Api */,
+				C7B514AF24BB7561003760E1 /* Services */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -538,6 +540,7 @@
 		C7C62B5D24C6441200D2C2F7 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				C7C62B6624C6E09900D2C2F7 /* Api */,
 				C7C62B5E24C6441800D2C2F7 /* Services */,
 			);
 			path = Data;
@@ -566,6 +569,14 @@
 				C7C62B6424C6D29D00D2C2F7 /* games.json */,
 			);
 			path = Stubs;
+			sourceTree = "<group>";
+		};
+		C7C62B6624C6E09900D2C2F7 /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				C7C62B6724C6E0C900D2C2F7 /* ApiStub.swift */,
+			);
+			path = Api;
 			sourceTree = "<group>";
 		};
 		D228ACB3DB33ADDF26888791 /* Pods */ = {
@@ -863,6 +874,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7C62B6824C6E0C900D2C2F7 /* ApiStub.swift in Sources */,
 				C76B01B924BFA8EA006D974B /* GameDetailTests.swift in Sources */,
 				C7B5150724BBB4B2003760E1 /* Mock.generated.swift in Sources */,
 				C76B01BB24BFAE67006D974B /* GameImageMock.swift in Sources */,

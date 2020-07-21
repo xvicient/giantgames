@@ -17,12 +17,12 @@ class GameServiceTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        setupService()
+        service = container.resolve(GameServiceApi.self)
         HTTPStubs.removeAllStubs()
     }
 
     func test_topGamesRequestSuccess() {
-        stubService("games", statusCode: 200)
+        ApiStub.stubRequest("games", statusCode: 200, target: self)
         let expectation = self.expectation(description: "Service called and matches")
 
         service.topGames(offset: "") {
@@ -47,7 +47,7 @@ class GameServiceTests: XCTestCase {
     }
 
     func test_topGamesRequestFailure() {
-        stubService("games", statusCode: 500)
+        ApiStub.stubRequest("games", statusCode: 500, target: self)
         let expectation = self.expectation(description: "Service called and matches")
 
         service.topGames(offset: "") {
@@ -63,24 +63,4 @@ class GameServiceTests: XCTestCase {
         waitForExpectations(timeout: 0.5, handler: .none)
     }
 
-}
-
-private extension GameServiceTests {
-    func setupService() {
-        service = container.resolve(GameServiceApi.self)
-    }
-
-    func stubService(_ service: String, statusCode: Int32) {
-        guard let host = URL(string: container.resolve(APIClientApi.self).baseURL)?.host else {
-            XCTFail("Service not stubbed")
-            return
-        }
-        stub(condition: isHost(host)) { _ in
-            HTTPStubsResponse(
-                fileAtPath: OHPathForFile("\(service).json", type(of: self))!,
-                statusCode: statusCode,
-                headers: ["Content-Type": "application/json"]
-            )
-        }
-    }
 }

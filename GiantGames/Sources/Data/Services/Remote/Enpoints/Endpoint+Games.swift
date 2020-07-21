@@ -1,5 +1,5 @@
 //
-//  Endpoint+Game.swift
+//  Endpoint+Games.swift
 //  GiantGames
 //
 //  Created by Xavier on 12/07/2020.

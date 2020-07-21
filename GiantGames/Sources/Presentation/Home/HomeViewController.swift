@@ -89,15 +89,15 @@ extension HomeViewController: HomeViewProtocol {
 private extension HomeViewController {
     func onViewWillAppear() {
         view.addGradient([.yellow, .purple])
-    }
-
-    func onViewDidLoad() {
-        overrideUserInterfaceStyle = .light
         navigationController?.hidesBarsOnSwipe = true
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.view.backgroundColor = .clear
+    }
+
+    func onViewDidLoad() {
+        overrideUserInterfaceStyle = .light
     }
 
     func showView(_ data: HomeViewData) {

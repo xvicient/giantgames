@@ -56,7 +56,7 @@ extension GameDetailPresenter: GameDetailPresenterProtocol {
 private extension GameDetailPresenter {
     func showView() {
         let data = GameDetailViewData(gameName: game.name,
-                                      gameStoryline: game.storyline,
+                                      gameStoryline: game.storyline.isEmpty ? game.summary : game.storyline,
                                       imagesTitle: locales.imagesTitle,
                                       videosTitle: locales.videosTitle)
         view.render(state: .showView(data))

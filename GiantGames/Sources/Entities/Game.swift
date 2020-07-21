@@ -15,7 +15,7 @@ struct Game: Equatable {
     let storyline: String
     let screenshots: [Int]?
     let videos: [Int]?
-    let rating: String
+    let rating: Double
     let summary: String
     let releaseDate: Date
 }

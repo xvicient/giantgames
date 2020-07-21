@@ -16,6 +16,7 @@ end
 target 'GiantGamesTests' do
   common
   pod 'SwiftyMocky', '~> 3.5'
+  pod 'OHHTTPStubs/Swift', '~> 9.0.0'
 end
 
 workspace 'GiantGames'

@@ -18,7 +18,7 @@ struct GameMock {
              storyline: "Test",
              screenshots: [1, 2, 3, 4, 5],
              videos: [1, 2, 3, 4, 5],
-             rating: "Rating",
+             rating: 99,
              summary: "Summary",
              releaseDate: Date())
     }
@@ -32,7 +32,7 @@ struct GameMock {
                               storyline: "Storyline\(index)",
                               screenshots: [1, 2, 3, 4, 5],
                               videos: [1, 2, 3, 4, 5],
-                              rating: "Rating\(index)",
+                              rating: 99,
                               summary: "Summary\(index)",
                               releaseDate: Date()))
         }

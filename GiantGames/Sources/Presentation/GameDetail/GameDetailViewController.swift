@@ -49,7 +49,6 @@ final class GameDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
-        onViewDidLoad()
     }
 }
 
@@ -77,10 +76,9 @@ extension GameDetailViewController: GameDetailViewProtocol {
 private extension GameDetailViewController {
     func onViewWillAppear() {
         view.addGradient([.yellow, .purple])
-    }
-    
-    func onViewDidLoad() {
+        navigationController?.hidesBarsOnSwipe = true
         navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.navigationBar.tintColor = .black
     }
 
     func showView(_ data: GameDetailViewData) {

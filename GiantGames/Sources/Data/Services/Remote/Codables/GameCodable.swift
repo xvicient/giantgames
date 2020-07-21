@@ -23,10 +23,10 @@ struct GameCodable: Codable, Domain {
         Game(id: id,
              name: name,
              cover: cover,
-             storyline: storyline ?? summary.orEmpty,
+             storyline: storyline.orEmpty,
              screenshots: screenshots,
              videos: videos,
-             rating: rating == nil ? "N/A" : String(rating!.rounded(1)),
+             rating: rating.orZero,
              summary: summary.orEmpty,
              releaseDate: Date(timeIntervalSince1970: firstReleaseDate))
     }
